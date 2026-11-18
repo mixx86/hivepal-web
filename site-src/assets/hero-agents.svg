@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="t">
-  <title id="t">Robot agents send a question with two quick replies, an insisting reminder and a call to a phone</title>
+  <title id="t">Robot agents send a question with two quick replies, a reminder and an urgent call to a phone</title>
   <defs>
     <linearGradient id="panel" x1="0" y1="0" x2="0.3" y2="1">
       <stop offset="0" stop-color="#00305c"/>
@@ -149,13 +149,13 @@
     </g>
   </g>
   <g class="bubble pop p2">
-    <path d="M282 368 h150 a14 14 0 0 1 14 14 v34 a14 14 0 0 1 -14 14 h-150 a14 14 0 0 1 -14 -14 v-10 l-18 -10 18 -2 v-12 a14 14 0 0 1 14 -14z"
+    <path d="M282 368 h150 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-150 a14 14 0 0 1 -14 -14 v-8 l-18 -10 18 -2 v-8 a14 14 0 0 1 14 -14z"
       fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
-    <text x="357" y="392" text-anchor="middle">💸 Rent is due today.</text>
-    <text x="357" y="413" text-anchor="middle">Paid it?</text>
+    <text x="357" y="391" text-anchor="middle">💸 Rent is due today.</text>
+    <text x="357" y="411" text-anchor="middle">Paid it?</text>
   </g>
 
-  <!-- Agent 3: the rent reminder got no answer, so it turns into a call -->
+  <!-- Agent 3: something urgent, so it calls -->
   <g class="bob b3">
     <g transform="translate(580 312)">
       <use href="#bot" color="#00a6fb"/>
@@ -170,9 +170,9 @@
     </g>
   </g>
   <g class="bubble pop p3">
-    <path d="M496 150 h176 a14 14 0 0 1 14 14 v34 a14 14 0 0 1 -14 14 h-70 l-16 20 2 -20 h-92 a14 14 0 0 1 -14 -14 v-34 a14 14 0 0 1 14 -14z"
+    <path d="M496 156 h176 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-70 l-16 20 2 -20 h-92 a14 14 0 0 1 -14 -14 v-28 a14 14 0 0 1 14 -14z"
       fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
-    <text class="urgent" x="584" y="174" text-anchor="middle">⚠️ Rent still unpaid!</text>
-    <text x="584" y="195" text-anchor="middle">📞 Calling you now</text>
+    <text class="urgent" x="584" y="179" text-anchor="middle">⚠️ Your server is down!</text>
+    <text x="584" y="199" text-anchor="middle">📞 Calling you now</text>
   </g>
 </svg>
