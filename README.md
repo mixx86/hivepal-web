@@ -8,7 +8,7 @@ The pages come from the Hivepal repo's `docs/` (one source of truth): `sync.py` 
 
 ```bash
 python3 sync.py ../hivepal          # copy the docs
-uvx --from mkdocs-material mkdocs serve   # preview at http://127.0.0.1:8000
+uvx --from mkdocs-material==9.8.1 mkdocs serve  # preview at http://127.0.0.1:8000
 ./deploy.sh                         # build and publish to GitHub Pages (branch gh-pages)
 ```
 

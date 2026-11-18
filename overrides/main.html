@@ -5,6 +5,9 @@
   {% if page.is_homepage %}<title>{{ config.site_name }}</title>{% else %}{{ super() }}{% endif %}
 {% endblock %}
 
+{#- The section tabs live in the header bar (partials/header.html), not in a row of their own. -#}
+{% block tabs %}{% endblock %}
+
 {% block extrahead %}
   {#- Material renders each Mermaid diagram into a *closed* shadow root, so nothing outside can size
       it. Open those roots (only for .mermaid hosts) so javascripts/diagrams.js can. Must run before
