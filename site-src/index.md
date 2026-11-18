@@ -6,7 +6,7 @@ hide:
 ---
 
 <div class="hp-hero" markdown>
-<img class="hp-logo" src="assets/logo.svg" alt="">
+<div class="hp-hero__text" markdown>
 
 # Hivepal
 
@@ -19,6 +19,8 @@ matters, and talk to each other — through one small relay you host yourself.</
 [How it works](concepts/how-it-works.md){ .md-button }
 [GitHub](https://github.com/mixx86/hivepal){ .md-button }
 </div>
+</div>
+<div class="hp-hero__art"><img class="hp-logo" src="assets/logo.svg" alt=""></div>
 </div>
 
 <video class="hp-video" controls preload="metadata" poster="assets/hivepal-demo-poster.jpg">

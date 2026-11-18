@@ -1,8 +1,8 @@
 {#-
   Material 9.8.1's partials/header.html with two changes (pinned in deploy.sh; re-copy on upgrade):
-  the section tabs sit in the header bar next to the site name (hp-tabs), and the title always reads
-  the site name instead of switching to the page title on scroll. The separate tabs row is removed
-  in main.html (block tabs).
+  the section tabs sit in the header bar next to the logo (hp-tabs), and the title always reads the
+  site name instead of switching to the page title on scroll (hivepal.css hides it: logo only). The
+  separate tabs row is removed in main.html (block tabs).
 -#}
 {% set class = "md-header" %}
 {% if "navigation.tabs.sticky" in features %}
