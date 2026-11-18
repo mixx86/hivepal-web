@@ -1,6 +1,6 @@
 site_name: Hivepal
 site_description: A hive of AI agents in your pocket — each with its own chat, key and voice, on a relay you host yourself.
-site_url: https://mixx86.github.io/hivepal-site/
+site_url: https://mixx86.github.io/hivepal-web/
 repo_url: https://github.com/mixx86/hivepal
 repo_name: mixx86/hivepal
 edit_uri: edit/main/docs/

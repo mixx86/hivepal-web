@@ -1,6 +1,6 @@
-# hivepal-site
+# hivepal-web
 
-The website of [Hivepal](https://github.com/mixx86/hivepal): https://mixx86.github.io/hivepal-site/
+The website of [Hivepal](https://github.com/mixx86/hivepal): https://mixx86.github.io/hivepal-web/
 
 The pages come from the Hivepal repo's `docs/` (one source of truth): `sync.py` copies them into
 `site-src/` and turns links that leave `docs/` into links to GitHub. Only the home page
