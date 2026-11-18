@@ -41,6 +41,7 @@
     .bubble text { font: 800 14.5px "Comic Neue", "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", system-ui, sans-serif;
       fill: #000814; }
     .bubble .pill { font-size: 12.5px; fill: #fff; }
+    .bubble .urgent { fill: #d7263d; }
     .light { animation: blink 2.4s ease-in-out infinite; }
     .light.l2 { animation-delay: .8s; } .light.l3 { animation-delay: 1.6s; }
     .pop { transform-box: fill-box; transform-origin: 50% 100%; animation: pop 4.8s ease-in-out infinite; }
@@ -148,13 +149,13 @@
     </g>
   </g>
   <g class="bubble pop p2">
-    <path d="M282 368 h150 a14 14 0 0 1 14 14 v42 a14 14 0 0 1 -14 14 h-150 a14 14 0 0 1 -14 -14 v-14 l-18 -10 18 -2 v-16 a14 14 0 0 1 14 -14z"
+    <path d="M282 368 h150 a14 14 0 0 1 14 14 v34 a14 14 0 0 1 -14 14 h-150 a14 14 0 0 1 -14 -14 v-10 l-18 -10 18 -2 v-12 a14 14 0 0 1 14 -14z"
       fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
-    <text x="357" y="394" text-anchor="middle">💸 Rent is due today.</text>
-    <text x="357" y="415" text-anchor="middle">Paid it?</text>
+    <text x="357" y="392" text-anchor="middle">💸 Rent is due today.</text>
+    <text x="357" y="413" text-anchor="middle">Paid it?</text>
   </g>
 
-  <!-- Agent 3: no answer, so the reminder turns into a call -->
+  <!-- Agent 3: the rent reminder got no answer, so it turns into a call -->
   <g class="bob b3">
     <g transform="translate(580 312)">
       <use href="#bot" color="#00a6fb"/>
@@ -169,9 +170,9 @@
     </g>
   </g>
   <g class="bubble pop p3">
-    <path d="M505 148 h160 a14 14 0 0 1 14 14 v42 a14 14 0 0 1 -14 14 h-62 l-16 20 2 -20 h-84 a14 14 0 0 1 -14 -14 v-42 a14 14 0 0 1 14 -14z"
+    <path d="M496 150 h176 a14 14 0 0 1 14 14 v34 a14 14 0 0 1 -14 14 h-70 l-16 20 2 -20 h-92 a14 14 0 0 1 -14 -14 v-34 a14 14 0 0 1 14 -14z"
       fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
-    <text x="585" y="174" text-anchor="middle">No reply in 20 min:</text>
-    <text x="585" y="195" text-anchor="middle">📞 calling you now</text>
+    <text class="urgent" x="584" y="174" text-anchor="middle">⚠️ Rent still unpaid!</text>
+    <text x="584" y="195" text-anchor="middle">📞 Calling you now</text>
   </g>
 </svg>
