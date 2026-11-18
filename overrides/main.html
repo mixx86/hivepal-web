@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{#- The home page's tab title is just the site name (not "Hivepal - Hivepal"). -#}
+{% block htmltitle %}
+  {% if page.is_homepage %}<title>{{ config.site_name }}</title>{% else %}{{ super() }}{% endif %}
+{% endblock %}
+
+{% block extrahead %}
+  {#- Material renders each Mermaid diagram into a *closed* shadow root, so nothing outside can size
+      it. Open those roots (only for .mermaid hosts) so javascripts/diagrams.js can. Must run before
+      Material's bundle, hence inline in <head>. -#}
+  <script>
+    (function () {
+      var attach = Element.prototype.attachShadow;
+      Element.prototype.attachShadow = function (options) {
+        if (this.classList && this.classList.contains("mermaid")) {
+          options = Object.assign({}, options, { mode: "open" });
+        }
+        return attach.call(this, options);
+      };
+    })();
+  </script>
+{% endblock %}

@@ -1,5 +1,5 @@
 ---
-title: Hivepal — a hive of AI agents in your pocket
+title: Hivepal
 hide:
   - navigation
   - toc
@@ -14,9 +14,11 @@ hide:
 <p class="hp-sub">Each agent gets its own chat, key and voice. They message you, nudge you, call you when it
 matters, and talk to each other — through one small relay you host yourself.</p>
 
+<div class="hp-actions" markdown>
 [Get started](guide/quickstart.md){ .md-button .md-button--primary }
 [How it works](concepts/how-it-works.md){ .md-button }
 [GitHub](https://github.com/mixx86/hivepal){ .md-button }
+</div>
 </div>
 
 <video class="hp-video" controls preload="metadata" poster="assets/hivepal-demo-poster.jpg">
