@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="t">
-  <title id="t">Robot agents send a plan with quick replies, an insisting reminder and a call to a phone</title>
+  <title id="t">Robot agents send a message with quick replies, an insisting reminder and a call to a phone</title>
   <defs>
     <linearGradient id="panel" x1="0" y1="0" x2="0.3" y2="1">
       <stop offset="0" stop-color="#00305c"/>
@@ -109,7 +109,7 @@
     <path class="ring" d="M296 150 q-14 18 0 36"/><path class="ring r2" d="M284 140 q-22 28 0 56"/>
   </g>
 
-  <!-- Agent 1, the planner: today's plan with quick-reply buttons -->
+  <!-- Agent 1, the planner: a change of plans with quick-reply buttons -->
   <g class="bob">
     <g transform="translate(200 196)">
       <use href="#bot" color="#00a6fb"/>
@@ -124,32 +124,38 @@
   <g class="bubble pop">
     <path d="M119 22 h176 a14 14 0 0 1 14 14 v50 a14 14 0 0 1 -14 14 h-70 l-18 20 2 -20 h-90 a14 14 0 0 1 -14 -14 v-50 a14 14 0 0 1 14 -14z"
       fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
-    <text x="207" y="47" text-anchor="middle">Plan: class 9 · gym 18</text>
+    <text x="207" y="47" text-anchor="middle">Meeting moved to 11:00</text>
     <rect x="147" y="60" width="54" height="26" rx="13" fill="#00a6fb" stroke="#000814" stroke-width="3"/>
     <text class="pill" x="174" y="78" text-anchor="middle">OK</text>
     <rect x="211" y="60" width="64" height="26" rx="13" fill="#0353a4" stroke="#000814" stroke-width="3"/>
     <text class="pill" x="243" y="78" text-anchor="middle">Later</text>
   </g>
 
-  <!-- Agent 2, the coach: a reminder that insists -->
+  <!-- Agent 2, the health buddy: a reminder that insists -->
   <g class="bob b2">
     <g transform="translate(150 360)">
       <use href="#bot" color="#7df9ff"/>
       <circle class="light l2" cx="0" cy="-50" r="7" fill="#00a6fb" stroke="#000814" stroke-width="3.5"/>
     </g>
-    <g transform="translate(200 428) rotate(-14)">
-      <rect x="-24" y="-4" width="48" height="8" rx="4" fill="#8fb3d9" stroke="#000814" stroke-width="3.5"/>
-      <rect x="-36" y="-17" width="14" height="34" rx="5" fill="#0353a4" stroke="#000814" stroke-width="4"/>
-      <rect x="-46" y="-12" width="11" height="24" rx="4" fill="#0353a4" stroke="#000814" stroke-width="4"/>
-      <rect x="22" y="-17" width="14" height="34" rx="5" fill="#0353a4" stroke="#000814" stroke-width="4"/>
-      <rect x="35" y="-12" width="11" height="24" rx="4" fill="#0353a4" stroke="#000814" stroke-width="4"/>
+    <!-- a pill bottle and a capsule -->
+    <g transform="translate(206 420) rotate(-10)">
+      <rect x="-15" y="-16" width="30" height="40" rx="7" fill="#e6f4ff" stroke="#000814" stroke-width="4"/>
+      <rect x="-18" y="-28" width="36" height="14" rx="4" fill="#0353a4" stroke="#000814" stroke-width="4"/>
+      <rect x="-10" y="-2" width="20" height="14" rx="3" fill="#00a6fb" stroke="#000814" stroke-width="2.5"/>
+      <path d="M-4 5 h8 M0 1 v8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(240 440) rotate(-30)">
+      <rect x="-14" y="-6" width="28" height="12" rx="6" fill="#7df9ff" stroke="#000814" stroke-width="3"/>
+      <path d="M0 -6 v12" stroke="#000814" stroke-width="3"/>
+      <path d="M0 -6 h8 a6 6 0 0 1 0 12 h-8z" fill="#ff4d6d"/>
+      <rect x="-14" y="-6" width="28" height="12" rx="6" fill="none" stroke="#000814" stroke-width="3"/>
     </g>
   </g>
   <g class="bubble pop p2">
     <path d="M282 368 h150 a14 14 0 0 1 14 14 v42 a14 14 0 0 1 -14 14 h-150 a14 14 0 0 1 -14 -14 v-14 l-18 -10 18 -2 v-16 a14 14 0 0 1 14 -14z"
       fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
-    <text x="357" y="394" text-anchor="middle">⏰ Gym in 15 min.</text>
-    <text x="357" y="415" text-anchor="middle">On your way?</text>
+    <text x="357" y="394" text-anchor="middle">💊 21:00, your pills.</text>
+    <text x="357" y="415" text-anchor="middle">Taken?</text>
   </g>
 
   <!-- Agent 3: no answer, so the reminder turns into a call -->
