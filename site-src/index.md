@@ -20,7 +20,7 @@ matters, and talk to each other — through one small relay you host yourself.</
 [GitHub](https://github.com/mixx86/hivepal){ .md-button }
 </div>
 </div>
-<div class="hp-hero__art"><img class="hp-logo" src="assets/logo.svg" alt=""></div>
+<div class="hp-hero__art"><img class="hp-art" src="assets/hero-agents.svg" alt="Three robot agents send a plan, a reminder and a call to a phone" width="560" height="470"></div>
 </div>
 
 <video class="hp-video" controls preload="metadata" poster="assets/hivepal-demo-poster.jpg">

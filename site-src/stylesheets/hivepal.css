@@ -14,12 +14,9 @@
 .md-header, .md-tabs { background: linear-gradient(90deg, #001d3d, #00284d); }
 
 /* Header: the logo, then the section tabs (overrides/partials/header.html); no name next to the logo. */
-.md-header__button.md-logo { display: block; padding: .1rem; margin: .2rem .6rem .2rem .2rem; }
-.md-header__button.md-logo img, .md-header__button.md-logo svg { height: 1.8rem; border-radius: .42rem;
-  box-shadow: 0 0 0 1px rgba(0, 166, 251, .4), 0 0 14px rgba(0, 166, 251, .35);
-  transition: transform .25s ease, box-shadow .25s ease; }
-.md-header__button.md-logo:hover img { transform: scale(1.07);
-  box-shadow: 0 0 0 1px rgba(125, 249, 255, .7), 0 0 20px rgba(0, 166, 251, .55); }
+/* The app icon as it is (assets/logo.svg, the same tile and proportions as the launcher icon). */
+.md-header__button.md-logo { display: block; padding: 0; margin: .2rem .7rem .2rem .2rem; }
+.md-header__button.md-logo img, .md-header__button.md-logo svg { height: 2rem; }
 /* The title stays only as a spacer (it pushes search to the right on phones); its text is hidden. */
 .md-header__title .md-header__ellipsis { visibility: hidden; }
 .hp-tabs { display: none; }
@@ -60,10 +57,10 @@ html { scroll-behavior: smooth; }
   animation: hp-breathe 9s ease-in-out infinite;
 }
 .hp-hero__text { max-width: 40rem; }
-.hp-hero__art { position: relative; padding-right: 3rem; }
-.hp-hero img.hp-logo { display: block; width: 210px; border-radius: 46px;
-  filter: drop-shadow(0 0 36px rgba(0, 166, 251, .45));
-  animation: hp-rise .9s cubic-bezier(.2, .7, .2, 1) .1s both, hp-float 7s ease-in-out 1s infinite; }
+.hp-hero__art { position: relative; }
+.hp-hero img.hp-art { display: block; width: min(470px, 38vw); height: auto;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .45));
+  animation: hp-rise .9s cubic-bezier(.2, .7, .2, 1) .1s both, hp-float 8s ease-in-out 1s infinite; }
 .md-typeset .hp-hero h1 {
   font-size: 4rem; font-weight: 800; line-height: 1.05; margin: 0 0 .9rem; letter-spacing: .01em;
   background: linear-gradient(90deg, #1a7cff, #00a6fb, #7df9ff, #00a6fb, #1a7cff); background-size: 200% 100%;
@@ -80,12 +77,11 @@ html { scroll-behavior: smooth; }
 @media (max-width: 960px) {
   .hp-hero { grid-template-columns: minmax(0, 1fr); padding: 2rem 0 1.5rem; gap: 1.4rem; }
   .hp-hero__art::before { width: 360px; height: 360px; }
-  .hp-hero__art { order: -1; padding: 0; justify-self: start; }
-  .hp-hero img.hp-logo { width: 104px; border-radius: 23px; }
+  .hp-hero__art { justify-self: start; width: 100%; max-width: 520px; }
+  .hp-hero img.hp-art { width: 100%; }
   .md-typeset .hp-hero h1 { font-size: 3.4rem; }
 }
 @media (max-width: 600px) {
-  .hp-hero img.hp-logo { width: 84px; border-radius: 19px; }
   .md-typeset .hp-hero h1 { font-size: 2.9rem; }
   .hp-hero p.hp-tag { font-size: 1.25rem; }
   .hp-actions > p { flex-direction: column; align-items: stretch; max-width: 20rem; }

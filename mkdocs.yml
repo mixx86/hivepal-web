@@ -10,7 +10,7 @@ copyright: Hivepal · Apache-2.0 · a fork of <a href="https://github.com/mutonb
 theme:
   name: material
   custom_dir: overrides
-  logo: assets/logo-mark.svg
+  logo: assets/logo.svg
   favicon: assets/favicon.png
   palette:
     scheme: slate
