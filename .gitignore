@@ -1,0 +1,6 @@
+/site/
+# Synced from the hivepal repo by sync.py (see README): not edited here
+/site-src/*
+!/site-src/index.md
+!/site-src/assets/
+!/site-src/stylesheets/

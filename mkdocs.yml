@@ -1,0 +1,89 @@
+site_name: Hivepal
+site_description: A hive of AI agents in your pocket — each with its own chat, key and voice, on a relay you host yourself.
+site_url: https://mixx86.github.io/hivepal-site/
+repo_url: https://github.com/mixx86/hivepal
+repo_name: mixx86/hivepal
+edit_uri: edit/main/docs/
+docs_dir: site-src
+copyright: Hivepal · Apache-2.0 · a fork of <a href="https://github.com/mutonby/agentring">agentring</a>
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/logo.svg
+  favicon: assets/favicon.png
+  palette:
+    scheme: slate
+    primary: custom
+    accent: custom
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - stylesheets/hivepal.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: "#"
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Guides:
+      - Quickstart: guide/quickstart.md
+      - Install on a server: guide/server.md
+      - Firebase (push): firebase.md
+      - Using the app: guide/app.md
+      - Connect your agents: guide/agents.md
+      - A hive of personal agents: guide/hive.md
+      - FAQ: faq.md
+      - Phones that don't ring: troubleshooting-oem.md
+  - How it works:
+      - Overview: concepts/how-it-works.md
+      - Multi-agent design: multiagent.md
+      - Architecture: architecture.md
+      - Protocol: protocol.md
+  - Reference:
+      - CLI: reference/cli.md
+      - Configuration: reference/configuration.md
+      - Agents and MCP: agents.md
+      - Voice AI: voice.md
+      - Android Auto: android-auto.md
+      - Releasing: release.md
+      - Hub mode: cloud.md
+      - Original setup guide: setup.md
+      - agentring's README: upstream-README.md
+
+not_in_nav: |
+  voip-research.md
