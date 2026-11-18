@@ -33,12 +33,7 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
-extra_css:
-  - stylesheets/hivepal.css
-
-extra_javascript:
-  - javascripts/diagrams.js
-  - javascripts/home.js
+# The site's own CSS and JS are loaded by overrides/main.html (versioned URLs).
 
 markdown_extensions:
   - admonition

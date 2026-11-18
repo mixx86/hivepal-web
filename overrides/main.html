@@ -8,7 +8,13 @@
 {#- The section tabs live in the header bar (partials/header.html), not in a row of their own. -#}
 {% block tabs %}{% endblock %}
 
+{#- The site's own CSS and JS carry the build time in their URL, so a new deploy is never shown with
+    the previous stylesheet from the browser's cache (GitHub Pages lets browsers keep files 10 min).
+    They are listed here instead of extra_css / extra_javascript in mkdocs.yml. -#}
+{% set hp_version = build_date_utc.strftime("%Y%m%d%H%M%S") %}
+
 {% block extrahead %}
+  <link rel="stylesheet" href="{{ 'stylesheets/hivepal.css' | url }}?v={{ hp_version }}">
   {#- Material renders each Mermaid diagram into a *closed* shadow root, so nothing outside can size
       it. Open those roots (only for .mermaid hosts) so javascripts/diagrams.js can. Must run before
       Material's bundle, hence inline in <head>. -#}
@@ -23,4 +29,10 @@
       };
     })();
   </script>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'javascripts/diagrams.js' | url }}?v={{ hp_version }}"></script>
+  <script src="{{ 'javascripts/home.js' | url }}?v={{ hp_version }}"></script>
 {% endblock %}

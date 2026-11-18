@@ -14,11 +14,12 @@
 .md-header, .md-tabs { background: linear-gradient(90deg, #001d3d, #00284d); }
 
 /* Header: the logo, then the section tabs (overrides/partials/header.html); no name next to the logo. */
-.md-header__button.md-logo { display: block; padding: .2rem; margin: .2rem .6rem .2rem .2rem; }
-.md-header__button.md-logo img, .md-header__button.md-logo svg { height: 1.6rem;
-  filter: drop-shadow(0 0 6px rgba(0, 166, 251, .55)); transition: transform .25s ease, filter .25s ease; }
-.md-header__button.md-logo:hover img { transform: rotate(30deg) scale(1.05);
-  filter: drop-shadow(0 0 10px rgba(125, 249, 255, .7)); }
+.md-header__button.md-logo { display: block; padding: .1rem; margin: .2rem .6rem .2rem .2rem; }
+.md-header__button.md-logo img, .md-header__button.md-logo svg { height: 1.8rem; border-radius: .42rem;
+  box-shadow: 0 0 0 1px rgba(0, 166, 251, .4), 0 0 14px rgba(0, 166, 251, .35);
+  transition: transform .25s ease, box-shadow .25s ease; }
+.md-header__button.md-logo:hover img { transform: scale(1.07);
+  box-shadow: 0 0 0 1px rgba(125, 249, 255, .7), 0 0 20px rgba(0, 166, 251, .55); }
 /* The title stays only as a spacer (it pushes search to the right on phones); its text is hidden. */
 .md-header__title .md-header__ellipsis { visibility: hidden; }
 .hp-tabs { display: none; }
@@ -76,10 +77,14 @@ html { scroll-behavior: smooth; }
 .hp-actions { animation: hp-rise .8s cubic-bezier(.2, .7, .2, 1) .24s both; }
 .hp-actions > p { display: flex; flex-wrap: wrap; gap: .7rem; margin: 0; }
 .hp-actions .md-button { margin: 0; min-width: 9.5rem; text-align: center; }
-@media (max-width: 760px) {
+@media (max-width: 960px) {
   .hp-hero { grid-template-columns: minmax(0, 1fr); padding: 2rem 0 1.5rem; gap: 1.4rem; }
   .hp-hero__art::before { width: 360px; height: 360px; }
-  .hp-hero__art { order: -1; padding: 0; }
+  .hp-hero__art { order: -1; padding: 0; justify-self: start; }
+  .hp-hero img.hp-logo { width: 104px; border-radius: 23px; }
+  .md-typeset .hp-hero h1 { font-size: 3.4rem; }
+}
+@media (max-width: 600px) {
   .hp-hero img.hp-logo { width: 84px; border-radius: 19px; }
   .md-typeset .hp-hero h1 { font-size: 2.9rem; }
   .hp-hero p.hp-tag { font-size: 1.25rem; }
