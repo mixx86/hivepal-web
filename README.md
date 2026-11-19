@@ -5,6 +5,8 @@ The website of [Hivepal](https://github.com/mixx86/hivepal): https://mixx86.gith
 The pages come from the Hivepal repo's `docs/` (one source of truth): `sync.py` copies them into
 `site-src/` and turns links that leave `docs/` into links to GitHub. Only the home page
 (`site-src/index.md`), the theme (`site-src/stylesheets/hivepal.css`) and the assets live here.
+`site-src/googlee1ca0bc08b77f46e.html` is the Google Search Console verification file: keep it at the
+site root and don't let `sync.py` remove it.
 
 ```bash
 python3 sync.py ../hivepal          # copy the docs

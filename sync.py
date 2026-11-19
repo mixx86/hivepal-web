@@ -13,7 +13,7 @@ SITE = Path(__file__).resolve().parent / "site-src"
 REPO = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent / "hivepal").resolve()
 DOCS = REPO / "docs"
 GITHUB = "https://github.com/mixx86/hivepal/blob/main/"
-OWN = {"index.md", "assets", "stylesheets", "javascripts"}  # the site's own files, never overwritten
+OWN = {"index.md", "assets", "stylesheets", "javascripts", "googlee1ca0bc08b77f46e.html"}  # the site's own files, never overwritten
 SKIP = {"README.md", "hivepal-icon.png", "hivepal-icon.svg"}
 
 LINK = re.compile(r"(\]\(|src=\")([^)\"#\s]+)([^)\"\s]*)")
