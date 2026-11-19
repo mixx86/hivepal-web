@@ -60,13 +60,13 @@ to each renewal, with a heads-up three days before.
 </div>
 </div>
 
-## Up in three commands
+## Up in two commands
 
 <div class="hp-steps" markdown>
 ```bash
-git clone https://github.com/mixx86/hivepal && cd hivepal
-./install.sh --local                  # or ./install.sh on a server with a domain
-./scripts/build-app.sh --install      # the Android app, over USB — then: hivepal pair
+curl -fsSL https://raw.githubusercontent.com/mixx86/hivepal/main/scripts/get.sh | sh -s -- --local
+# on a server: … | sh   (no domain? it offers <ip>.sslip.io)
+hivepal pair                          # scan the QR with the phone's camera: it installs and pairs
 ```
 </div>
 
