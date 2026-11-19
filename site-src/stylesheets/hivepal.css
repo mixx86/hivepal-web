@@ -21,9 +21,9 @@
 .md-header__title .md-header__ellipsis { visibility: hidden; }
 .hp-tabs { display: none; }
 @media screen and (max-width: 76.234375em) {
-  /* Phones and tablets: the menu button first, then the logo. */
+  /* Phones and tablets: the menu button first and no logo beside it (the drawer shows it). */
   .md-header__inner > label[for="__drawer"] { order: -2; }
-  .md-header__button.md-logo { order: -1; margin-left: 0; }
+  .md-header__button.md-logo { display: none; }
 }
 @media screen and (min-width: 76.25em) {
   .md-header__title { display: none; }
