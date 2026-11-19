@@ -49,14 +49,14 @@ An agent calls and it rings like a phone call, even locked. Call any agent back;
 that agent.
 </div>
 <div class="hp-card" markdown>
-### ✉️ Wake-up emails
+### ✉️ Wake-up emails, mailbox files
 Agents that only run on a schedule (like Grok bots) get an email doorbell when you write, so they answer
-in seconds.
+in seconds. Agents that read a folder get each message as a Markdown file.
 </div>
 <div class="hp-card" markdown>
 ### 💳 Subscriptions
-The app reads your services' billing pages and counts down to each renewal, with a heads-up three days
-before.
+The app reads the billing pages of what you pay to run your agents (AI, APIs, servers) and counts down
+to each renewal, with a heads-up three days before.
 </div>
 </div>
 
