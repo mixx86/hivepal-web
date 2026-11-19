@@ -45,8 +45,8 @@ in the end your phone rings.
 </div>
 <div class="hp-card" markdown>
 ### 📞 Real calls
-An agent calls and it rings like a phone call, even locked. Call any agent back; a voice AI speaks as
-that agent.
+An agent calls and it rings like a phone call, even locked, through Firebase or, without Google,
+UnifiedPush (ntfy). Call any agent back; a voice AI speaks as that agent.
 </div>
 <div class="hp-card" markdown>
 ### ✉️ Wake-up emails, mailbox files
@@ -70,8 +70,9 @@ hivepal pair                          # scan the QR with the phone's camera: it 
 ```
 </div>
 
-Then [connect your agents](guide/agents.md): Claude Code, Codex, Grok bots, n8n, cron jobs — anything
-that can run a command or speak MCP.
+Then [connect your agents](guide/agents.md) (`hivepal connect claude-code`, Codex, Cursor, Grok bots,
+n8n, cron jobs — anything that can run a command or speak MCP). The relay's web panel at `/admin`
+shows what's working, and `hivepal doctor` says how to fix what isn't.
 
 ## Why Hivepal
 
