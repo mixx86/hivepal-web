@@ -1,0 +1,1863 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A hive of AI agents in your pocket — each with its own chat, key and voice, on a relay you host yourself.">
+      
+      
+      
+        <link rel="canonical" href="https://mixx86.github.io/hivepal-web/release/">
+      
+      
+        <link rel="prev" href="../android-auto/">
+      
+      
+        <link rel="next" href="../cloud/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+  
+      
+        <title>Releasing - Hivepal</title>
+      
+    
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../stylesheets/hivepal.css?v=20261120105047"><script>
+    (function () {
+      var attach = Element.prototype.attachShadow;
+      Element.prototype.attachShadow = function (options) {
+        if (this.classList && this.classList.contains("mermaid")) {
+          options = Object.assign({}, options, { mode: "open" });
+        }
+        return attach.call(this, options);
+      };
+    })();
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#releasing-hivepal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Hivepal" class="md-header__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+      <nav class="hp-tabs" aria-label="Tabs">
+        <ul class="md-tabs__list">
+          
+            
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide/quickstart/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../concepts/how-it-works/" class="md-tabs__link">
+          
+  
+  
+  How it works
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../reference/cli/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+          
+        </ul>
+      </nav>
+    
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hivepal" class="md-nav__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Hivepal
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on a server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firebase (push)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/hive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A hive of personal agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-oem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phones that don't ring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiagent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-agent design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android Auto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releasing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-release-and-the-two-android-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to release, and the two Android channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-time setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="One-time setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-release-signing-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Release signing key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-github-secrets-and-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. GitHub secrets and variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pypi-trusted-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PyPI trusted publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-github-container-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. GitHub Container Registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-protect-main-and-the-release-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Protect main and the release tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutting-a-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutting a release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-release-apk-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a release APK locally
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Play
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directories
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hub mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Original setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agentring's README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-release-and-the-two-android-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to release, and the two Android channels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-time setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="One-time setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-release-signing-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Release signing key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-github-secrets-and-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. GitHub secrets and variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pypi-trusted-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PyPI trusted publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-github-container-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. GitHub Container Registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-protect-main-and-the-release-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Protect main and the release tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutting-a-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutting a release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-release-apk-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building a release APK locally
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google Play
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directories
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="releasing-hivepal">Releasing hivepal<a class="headerlink" href="#releasing-hivepal" title="Permanent link">#</a></h1>
+<p>Pushing a tag <code>vX.Y.Z</code> runs <a href="https://github.com/mixx86/hivepal/blob/main/.github/workflows/release.yml"><code>.github/workflows/release.yml</code></a>.
+It builds everything first and publishes only once every build has succeeded:</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Where it goes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android APK signed with the release key (<code>hivepal-X.Y.Z.apk</code>)</td>
+<td>GitHub release</td>
+</tr>
+<tr>
+<td>Daemon sdist + wheel (<code>hivepal</code> on PyPI)</td>
+<td>PyPI (trusted publishing) and the GitHub release</td>
+</tr>
+<tr>
+<td><code>ghcr.io/&lt;owner&gt;/hivepal-relay:X.Y.Z</code> and <code>hivepal-daemon:X.Y.Z</code> (amd64 + arm64, SBOM + provenance)</td>
+<td>GitHub Container Registry; <code>latest</code> too for final releases</td>
+</tr>
+<tr>
+<td><code>SHA256SUMS</code> of every file in the release</td>
+<td>GitHub release</td>
+</tr>
+</tbody>
+</table>
+<p>Pre-releases use PEP 440 suffixes: <code>v0.3.0a1</code>, <code>v0.3.0b2</code>, <code>v0.3.0rc1</code>. They are
+marked as pre-releases on GitHub, don't move the <code>latest</code> image tag, and pip only
+installs them when asked for explicitly. Other tag shapes (<code>v0.3</code>, <code>v0.3.0-rc.1</code>)
+are rejected.</p>
+<p>The Android <code>versionCode</code> is derived from the tag so that every release upgrades
+the previous one: <code>major·1000000 + minor·10000 + patch·100 + slot</code>, where the slot
+is <code>N</code> for <code>aN</code>, <code>30+N</code> for <code>bN</code>, <code>60+N</code> for <code>rcN</code> and <code>99</code> for the final release
+(<code>v0.2.0rc1</code> → 20061, <code>v0.2.0</code> → 20099).</p>
+<h2 id="when-to-release-and-the-two-android-channels">When to release, and the two Android channels<a class="headerlink" href="#when-to-release-and-the-two-android-channels" title="Permanent link">#</a></h2>
+<p>There is no schedule: release when <code>main</code> has something worth installing, and say what in
+<a href="https://github.com/mixx86/hivepal/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a>. Every pull request that changes behaviour adds a line under
+<strong>Unreleased</strong>; that section is what the next release ships. A <strong>patch</strong> (<code>0.4.1</code>) only fixes
+things, a <strong>minor</strong> (<code>0.5.0</code>) adds features (before 1.0 it may also change the protocol, which the
+changelog must then say).</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Built from</th>
+<th>Signed with</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release (<code>hivepal-X.Y.Z.apk</code>)</td>
+<td>a <code>vX.Y.Z</code> tag</td>
+<td>the release key</td>
+<td>from the tag (above)</td>
+</tr>
+<tr>
+<td><code>android-preview</code></td>
+<td>every push to <code>main</code></td>
+<td>the public debug key</td>
+<td><a href="https://github.com/mixx86/hivepal/blob/main/scripts/app-version.sh"><code>scripts/app-version.sh</code></a>: last release + commits since (<code>0.4.0+2.ga6e21e1</code>), versionCode <code>100000000 +</code> commits</td>
+</tr>
+</tbody>
+</table>
+<p><code>scripts/build-app.sh</code> numbers its builds like <code>android-preview</code>. Within a channel every newer
+build installs over the older one. Across channels it doesn't (different keys): moving a phone from
+one channel to the other means uninstalling, and pairing it again.</p>
+<h2 id="one-time-setup">One-time setup<a class="headerlink" href="#one-time-setup" title="Permanent link">#</a></h2>
+<h3 id="1-release-signing-key">1. Release signing key<a class="headerlink" href="#1-release-signing-key" title="Permanent link">#</a></h3>
+<p>The key that signs the APK can <strong>never change</strong>: Android refuses to update an app
+signed with a different key, so losing it means every user has to uninstall and
+reinstall. Generate it once, on your own machine, and keep an offline backup of the
+file and its password (e.g. in a password manager).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>keytool<span class="w"> </span>-genkeypair<span class="w"> </span>-v<span class="w"> </span>-keystore<span class="w"> </span>hivepal-release.jks<span class="w"> </span>-storetype<span class="w"> </span>PKCS12<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-alias<span class="w"> </span>hivepal<span class="w"> </span>-keyalg<span class="w"> </span>RSA<span class="w"> </span>-keysize<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-validity<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-dname<span class="w"> </span><span class="s2">"CN=hivepal"</span>
+</code></pre></div>
+<p><code>keytool</code> ships with any JDK (<code>$JAVA_HOME/bin/keytool</code>). It asks for a password; a
+PKCS12 keystore uses the same one for the key.</p>
+<p>Note the certificate's SHA-256 fingerprint (lowercase, no colons, the way <code>apksigner</code>
+prints it) for the optional check in step 2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>keytool<span class="w"> </span>-list<span class="w"> </span>-v<span class="w"> </span>-keystore<span class="w"> </span>hivepal-release.jks<span class="w"> </span>-alias<span class="w"> </span>hivepal<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s/.*SHA256: //p'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">':'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">'A-F'</span><span class="w"> </span><span class="s1">'a-f'</span>
+</code></pre></div>
+<p>APKs signed with this key don't install over the debug-signed builds of the
+<code>android-preview</code> pre-release (same package name, different key). Testers coming
+from those need to uninstall first.</p>
+<h3 id="2-github-secrets-and-variables">2. GitHub secrets and variables<a class="headerlink" href="#2-github-secrets-and-variables" title="Permanent link">#</a></h3>
+<p>Repository → Settings → Secrets and variables → Actions:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Kind</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HIVEPAL_KEYSTORE_BASE64</code></td>
+<td>secret</td>
+<td>the keystore, base64 on one line</td>
+</tr>
+<tr>
+<td><code>HIVEPAL_KEYSTORE_PASSWORD</code></td>
+<td>secret</td>
+<td>keystore password</td>
+</tr>
+<tr>
+<td><code>HIVEPAL_KEY_ALIAS</code></td>
+<td>secret</td>
+<td><code>hivepal</code> (the <code>-alias</code> above)</td>
+</tr>
+<tr>
+<td><code>HIVEPAL_KEY_PASSWORD</code></td>
+<td>secret</td>
+<td>key password; optional for PKCS12 (defaults to the keystore password)</td>
+</tr>
+<tr>
+<td><code>HIVEPAL_RELEASE_CERT_SHA256</code></td>
+<td>variable (optional)</td>
+<td>the fingerprint from step 1; when set, an APK signed by anything else fails the release</td>
+</tr>
+</tbody>
+</table>
+<p>With the GitHub CLI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>base64<span class="w"> </span>&lt;<span class="w"> </span>hivepal-release.jks<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">'\n'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>HIVEPAL_KEYSTORE_BASE64
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>HIVEPAL_KEYSTORE_PASSWORD<span class="w">      </span><span class="c1"># prompts for the value</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>HIVEPAL_KEY_ALIAS<span class="w"> </span>--body<span class="w"> </span>hivepal
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>HIVEPAL_KEY_PASSWORD
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>gh<span class="w"> </span>variable<span class="w"> </span><span class="nb">set</span><span class="w"> </span>HIVEPAL_RELEASE_CERT_SHA256<span class="w"> </span>--body<span class="w"> </span>&lt;fingerprint&gt;
+</code></pre></div>
+<p>The workflow decodes the keystore into the runner's temporary directory, sets
+<code>HIVEPAL_REQUIRE_RELEASE_KEY=1</code> (so a missing key fails the build instead of
+falling back to the debug key), deletes the file right after the build and checks
+that the APK is not signed with the debug certificate.</p>
+<h3 id="3-pypi-trusted-publishing">3. PyPI trusted publishing<a class="headerlink" href="#3-pypi-trusted-publishing" title="Permanent link">#</a></h3>
+<p>No PyPI token is stored anywhere: PyPI trusts this repository's workflow through
+OpenID Connect.</p>
+<p>The <code>pypi</code> job only runs when the repository variable <code>HIVEPAL_PUBLISH_PYPI</code> is <code>true</code>
+(<code>gh variable set HIVEPAL_PUBLISH_PYPI --body true</code>). Until then a release skips PyPI,
+attaches the wheel to the GitHub release and its notes say how to install from it.</p>
+<ol>
+<li>On <a href="https://pypi.org">pypi.org</a> → your account → <strong>Publishing</strong> → <em>Add a new
+   pending publisher</em> (the project doesn't exist yet; once it does, use the project's
+   own Publishing page):</li>
+<li>PyPI project name: <code>hivepal</code></li>
+<li>Owner: <code>mixx86</code>, repository: <code>hivepal</code></li>
+<li>Workflow name: <code>release.yml</code></li>
+<li>Environment name: <code>pypi</code></li>
+<li>On GitHub → Settings → Environments → <strong>New environment</strong> <code>pypi</code>. Recommended:
+   <em>Required reviewers</em> (yourself), so every upload waits for a click, and
+   <em>Deployment branches and tags</em> → selected tags → <code>v*</code>.</li>
+</ol>
+<p>PyPI versions are immutable: a version that was uploaded can never be uploaded
+again, even after deleting it. A broken release is fixed with a new version.</p>
+<p>Publishing to PyPI makes the daemon's source (the sdist) public even while this
+repository is private.</p>
+<h3 id="4-github-container-registry">4. GitHub Container Registry<a class="headerlink" href="#4-github-container-registry" title="Permanent link">#</a></h3>
+<p>Nothing to create: the <code>images</code> job pushes with the workflow's own <code>GITHUB_TOKEN</code>
+(<code>packages: write</code> is granted to that job only). The first push creates the
+packages <code>hivepal-relay</code> and <code>hivepal-daemon</code> under the owner's account,
+linked to this repository through the <code>org.opencontainers.image.source</code> label.</p>
+<p>New packages of a private repository are private. To let anyone pull them: the
+package's page → Package settings → <strong>Change visibility</strong> → Public.</p>
+<p>If the organisation or repository restricts workflow permissions (Settings →
+Actions → General → Workflow permissions), it must still allow jobs to request
+<code>packages: write</code>, <code>contents: write</code> and <code>id-token: write</code>.</p>
+<h3 id="5-protect-main-and-the-release-tags">5. Protect <code>main</code> and the release tags<a class="headerlink" href="#5-protect-main-and-the-release-tags" title="Permanent link">#</a></h3>
+<p>Hivepal's repository has two rulesets (Settings → Rules → Rulesets):</p>
+<ul>
+<li><strong>main</strong>: changes land only through a pull request, squash-merged, once the required checks
+  pass (<code>Relay + daemon tests</code>, <code>docker compose smoke test (…)</code>, <code>Build APK + emulator
+  end-to-end</code>); no force pushes, no deletion, linear history. No one bypasses it. Pull requests
+  need no approval, so the maintainer (or an agent working for them) can merge their own, and
+  <strong>auto-merge</strong> (<code>gh pr merge --squash --auto</code>) merges one by itself when CI turns green.</li>
+<li><strong>release tags</strong>: only repository admins may create, move or delete <code>v*</code> tags. Anyone who can
+  push a <code>v*</code> tag can publish a release.</li>
+</ul>
+<p>The repository also merges by squash only and deletes a branch once its pull request is merged.</p>
+<h2 id="cutting-a-release">Cutting a release<a class="headerlink" href="#cutting-a-release" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>switch<span class="w"> </span>main<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>--ff-only
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>scripts/release.sh<span class="w"> </span><span class="m">0</span>.4.1<span class="w">        </span><span class="c1"># --dry-run to only prepare the branch locally</span>
+</code></pre></div>
+<p><a href="https://github.com/mixx86/hivepal/blob/main/scripts/release.sh"><code>scripts/release.sh</code></a> checks that <code>main</code> is clean and up to date and that
+<code>CHANGELOG.md</code> has entries under <strong>Unreleased</strong>. On a branch <code>release/v0.4.1</code> it writes the version
+everywhere it is kept (<code>daemon/pyproject.toml</code> + <code>uv.lock</code>, <code>relay/package.json</code> +
+<code>package-lock.json</code>, the relay's <code>VERSION</code> in <code>relay/src/routes/system.ts</code>, which <code>/v1/status</code>
+reports) and turns <strong>Unreleased</strong> into <code>[0.4.1] - &lt;date&gt;</code>. It opens a pull request that merges
+itself when CI is green, then tags the merged commit <code>v0.4.1</code> and pushes the tag. The release
+workflow refuses a tag whose version doesn't match those files or has no changelog section, and
+puts that section at the top of the GitHub release's notes.</p>
+<p>Then follow the run in the Actions tab (approve the <code>pypi</code> environment when asked, if PyPI is on).
+Between releases <code>main</code> keeps the last release's version; preview builds show how far past it they
+are (<code>0.4.0+2.ga6e21e1</code>).</p>
+<p>If the run fails before the <code>pypi</code> job, fix the problem in a pull request, delete the tag
+(<code>git push --delete origin v0.4.1 &amp;&amp; git tag -d v0.4.1</code>) and tag the fixed <code>main</code> again
+(<code>git tag -a v0.4.1 -m "hivepal 0.4.1" &amp;&amp; git push origin v0.4.1</code>). After PyPI has the version,
+release a new patch version instead.</p>
+<h2 id="building-a-release-apk-locally">Building a release APK locally<a class="headerlink" href="#building-a-release-apk-locally" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>app-android
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HIVEPAL_KEYSTORE_FILE</span><span class="o">=</span>/path/to/hivepal-release.jks
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HIVEPAL_KEYSTORE_PASSWORD</span><span class="o">=</span>…<span class="w"> </span><span class="nv">HIVEPAL_KEY_ALIAS</span><span class="o">=</span>hivepal
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>./gradlew<span class="w"> </span>:app:assembleRelease<span class="w"> </span>-PversionName<span class="o">=</span><span class="m">0</span>.4.1<span class="w"> </span>-PversionCode<span class="o">=</span><span class="m">40199</span>
+</code></pre></div>
+<p>The same names also work as Gradle properties (<code>-PHIVEPAL_KEYSTORE_FILE=…</code>).
+Without <code>HIVEPAL_KEYSTORE_FILE</code>, <code>assembleRelease</code> still works but signs with the
+public debug key and prints a warning: fine for testing, never publish that APK.
+Without <code>-PversionName</code>/<code>-PversionCode</code> the build is <code>0.2.0-dev</code> / <code>1</code>; <code>scripts/build-app.sh</code>
+passes the preview numbering instead.</p>
+<h2 id="google-play">Google Play<a class="headerlink" href="#google-play" title="Permanent link">#</a></h2>
+<blockquote>
+<p>Upstream agentring publishes its app on Google Play under <code>dev.agentring.app</code>. Hivepal doesn't: to
+publish your own build, use your own application id (<code>-PhivepalApplicationId=</code>) and your own listing.
+The notes below are upstream's, kept as a reference.</p>
+</blockquote>
+<p>Play takes an Android App Bundle (AAB), not an APK. Build it with the release key, which
+then acts as Play's <em>upload key</em> (enrol in Play App Signing when creating the app):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>app-android
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HIVEPAL_KEYSTORE_FILE</span><span class="o">=</span>/path/to/hivepal-release.jks
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HIVEPAL_KEYSTORE_PASSWORD</span><span class="o">=</span>…<span class="w"> </span><span class="nv">HIVEPAL_KEY_ALIAS</span><span class="o">=</span>…<span class="w"> </span><span class="nv">HIVEPAL_KEY_PASSWORD</span><span class="o">=</span>…
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nv">HIVEPAL_REQUIRE_RELEASE_KEY</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./gradlew<span class="w"> </span>:app:bundleRelease<span class="w"> </span>-PversionName<span class="o">=</span><span class="m">0</span>.3.0<span class="w"> </span>-PversionCode<span class="o">=</span><span class="m">30099</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># -&gt; app/build/outputs/bundle/release/app-release.aab</span>
+</code></pre></div>
+<p><code>versionCode</code> must grow with every upload. The app targets API 36, which Play requires
+for new apps and updates from 2026-08-31.</p>
+<p><strong>Android Auto stays out of production bundles.</strong> Google Play takes calling apps for cars
+only on its internal and closed testing tracks and rejects a production or open-testing
+release that contains one, so <code>bundleRelease</code> leaves the car entry point out by default.
+For a closed-testing track with Android Auto, build a separate bundle with
+<code>-PhivepalAndroidAuto=true</code> and a higher <code>versionCode</code>, and never promote it to
+production (<a href="../android-auto/">android-auto.md</a>). The GitHub APK always includes it.</p>
+<p>Play Console items this app needs:</p>
+<ul>
+<li><strong>Privacy policy:</strong> <code>https://agentring.io/privacy</code>. <strong>Account deletion:</strong>
+  <code>https://agentring.io/delete-account</code> (accounts exist only on hivepal cloud; they are
+  deleted from the dashboard or by email). Self-hosted users have no account.</li>
+<li><strong>Full-screen intent</strong> (<code>USE_FULL_SCREEN_INTENT</code>): declare "calling app" — incoming calls
+  show over the lock screen.</li>
+<li><strong>Foreground service types</strong> <code>phoneCall</code> and <code>microphone</code>: declare them with a short video
+  of an incoming call being answered (an agent calls, the phone rings locked, the call runs).</li>
+<li><strong><code>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code>:</strong> restricted on Play. Justify it as a calling
+  app whose calls must ring in Doze; if review rejects it, a Play build can drop the
+  permission and open <code>Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS</code> instead.</li>
+<li><strong>Data safety:</strong> microphone audio during calls (sent to the user's relay / voice AI,
+  not stored by the app), messages, device identifiers and the FCM token; data in transit
+  is encrypted (https/wss); the user can delete it (unpair, or delete the cloud account).</li>
+<li>New personal developer accounts must run a closed test (12+ testers, 14 days) before
+  production; organisation accounts don't.</li>
+</ul>
+<h2 id="directories">Directories<a class="headerlink" href="#directories" title="Permanent link">#</a></h2>
+<blockquote>
+<p>Upstream's listings (MCP Registry, skills, Glama) point at agentring's hosted service; a Hivepal
+listing would point at your own relay. Kept as a reference.</p>
+</blockquote>
+<p>Where hivepal is listed, and what to refresh after a release:</p>
+<ul>
+<li><strong>MCP Registry</strong> (<code>registry.modelcontextprotocol.io</code>, feeds GitHub's registry and other
+  directories): <a href="https://github.com/mixx86/hivepal/blob/main/server.json"><code>server.json</code></a> lists the hosted server
+  (<code>https://agentring.io/mcp</code>) as <code>io.github.mixx86/hivepal</code>. Set its <code>version</code> to the
+  release, then <code>mcp-publisher validate</code>, <code>mcp-publisher login github</code> and
+  <code>mcp-publisher publish</code> from the repository root. A version can be published once.</li>
+<li><strong>Grok Build plugin marketplace</strong> (<code>xai-org/plugin-marketplace</code>):
+  <a href="https://github.com/mixx86/hivepal/blob/main/plugins/hivepal"><code>plugins/hivepal</code></a> is the plugin (the hosted MCP server and a
+  copy of the skill; a test keeps the copy equal). The catalog entry pins a commit of this
+  repository, so after changing the plugin or the skill, open a PR there that bumps the
+  <code>sha</code> and regenerates the index (its CONTRIBUTING.md has the commands).</li>
+<li><strong>skills.sh</strong>: nothing to publish. It lists <code>skills/hivepal</code> from this repository as
+  people install it (<code>npx skills add mixx86/hivepal</code>).</li>
+<li><strong>Glama</strong> (<code>glama.ai/mcp/servers/mixx86/hivepal</code>): it builds the server from this
+  repository with the settings on its admin page (build step <code>uv sync --project daemon
+  --frozen --no-dev</code>, command <code>uv run --project daemon --no-sync hivepal mcp</code>, Python
+  3.12, placeholder relay URL and API key) and checks that it starts and lists its tools.
+  Auto-release is on: it rebuilds on every GitHub release.</li>
+<li><strong>awesome-mcp-servers</strong> (<code>punkpeye/awesome-mcp-servers</code>, Communication): one line in
+  its README; only needs a PR if the description changes.</li>
+<li><strong>ClawHub</strong>: <code>clawhub skill publish skills/hivepal --slug hivepal --version &lt;x.y.z&gt;</code>
+  after changing the skill.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../android-auto/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Android Auto">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Android Auto
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cloud/" class="md-footer__link md-footer__link--next" aria-label="Next: Hub mode">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Hub mode
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Hivepal · Apache-2.0 · a fork of <a href="https://github.com/mutonby/agentring">agentring</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script src="../javascripts/diagrams.js?v=20261120105047"></script>
+  <script src="../javascripts/home.js?v=20261120105047"></script>
+  <script src="../javascripts/tabs.js?v=20261120105047"></script>
+
+  </body>
+</html>

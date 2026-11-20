@@ -1,0 +1,1988 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A hive of AI agents in your pocket — each with its own chat, key and voice, on a relay you host yourself.">
+      
+      
+      
+        <link rel="canonical" href="https://mixx86.github.io/hivepal-web/agents/">
+      
+      
+        <link rel="prev" href="../reference/configuration/">
+      
+      
+        <link rel="next" href="../voice/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+  
+      
+        <title>Agents and MCP - Hivepal</title>
+      
+    
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../stylesheets/hivepal.css?v=20261120105047"><script>
+    (function () {
+      var attach = Element.prototype.attachShadow;
+      Element.prototype.attachShadow = function (options) {
+        if (this.classList && this.classList.contains("mermaid")) {
+          options = Object.assign({}, options, { mode: "open" });
+        }
+        return attach.call(this, options);
+      };
+    })();
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#connecting-agents" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Hivepal" class="md-header__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+      <nav class="hp-tabs" aria-label="Tabs">
+        <ul class="md-tabs__list">
+          
+            
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide/quickstart/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../concepts/how-it-works/" class="md-tabs__link">
+          
+  
+  
+  How it works
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../reference/cli/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+          
+        </ul>
+      </nav>
+    
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hivepal" class="md-nav__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Hivepal
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on a server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firebase (push)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/hive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A hive of personal agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-oem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phones that don't ring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiagent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-agent design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and MCP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-hivepal-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP server (hivepal mcp)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-mcp-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote MCP (HTTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        agents.yaml
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="agents.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-consultation-goes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a consultation goes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recipes-by-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recipes by harness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recipes by harness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#your-agent-reaches-you-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your agent reaches you (MCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hivepal-connect-claude-code-codex-cursor-openclaw-hermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hivepal connect (Claude Code, Codex, Cursor, OpenClaw, Hermes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#you-consult-your-agent-from-a-call-agentsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        You consult your agent from a call (agents.yaml)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="You consult your agent from a call (agents.yaml)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openclaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenClaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents-behind-an-http-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agents behind an HTTP API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-n8n-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API (n8n, scripts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android Auto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hub mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Original setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agentring's README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-server-hivepal-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP server (hivepal mcp)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-mcp-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote MCP (HTTP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        agents.yaml
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="agents.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-consultation-goes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a consultation goes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recipes-by-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recipes by harness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recipes by harness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#your-agent-reaches-you-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your agent reaches you (MCP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hivepal-connect-claude-code-codex-cursor-openclaw-hermes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hivepal connect (Claude Code, Codex, Cursor, OpenClaw, Hermes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#you-consult-your-agent-from-a-call-agentsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        You consult your agent from a call (agents.yaml)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="You consult your agent from a call (agents.yaml)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openclaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenClaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents-behind-an-http-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agents behind an HTTP API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-n8n-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API (n8n, scripts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="connecting-agents">Connecting agents<a class="headerlink" href="#connecting-agents" title="Permanent link">#</a></h1>
+<p>There are two directions, and you can use both:</p>
+<ol>
+<li><strong>Your agent reaches you.</strong> Claude Code, OpenClaw, n8n or a script messages your
+   phone, waits for your reply, or calls you. A voice AI talks to you for the
+   agent and hands it the transcript. Use the <a href="#mcp-server-hivepal-mcp">MCP server</a>
+   (or its <a href="#remote-mcp-http">HTTP version</a>), the CLI or the relay's REST API.</li>
+<li><strong>You reach your agents by phone.</strong> On a call (one the agent placed, or one you
+   made with "Call agent" in the app), the voice AI can ask your agents for help.
+   Each agent in <a href="#agentsyaml"><code>agents.yaml</code></a> is a tool for it, through
+   <code>consult_agent</code>, and so are your MCP servers.</li>
+</ol>
+<h2 id="mcp-server-hivepal-mcp">MCP server (<code>hivepal mcp</code>)<a class="headerlink" href="#mcp-server-hivepal-mcp" title="Permanent link">#</a></h2>
+<p><code>hivepal mcp</code> is an MCP server over stdio. Add it to any MCP client:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>hivepal<span class="w"> </span>--<span class="w"> </span>hivepal<span class="w"> </span>mcp<span class="w">          </span><span class="c1"># Claude Code</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"hivepal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hivepal"</span><span class="p">,</span><span class="w"> </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"mcp"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>The second form is the usual <code>mcpServers</code> config that most clients read. It uses
+the daemon's config (<code>hivepal init</code>), so run <code>hivepal init</code> and
+<code>hivepal pair</code> first. Other harnesses: see <a href="#recipes-by-harness">recipes</a>.</p>
+<p><code>hivepal mcp --agent-name "Claude Code"</code> sets the caller name the phone shows (useful
+when several agents share one relay), and <code>--device dev_…</code> (repeatable) rings only those
+phones instead of every paired one.</p>
+<p><code>call</code> blocks until the call ends, and <code>get_replies</code> up to <code>wait_s</code>: raise the
+client's MCP tool timeout if it has a short one (Codex: 60 s, OpenClaw: 60 s,
+opencode: 30 s, Hermes: 300 s).</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>send_message(text, reply_to?)</code></td>
+<td>Sends a message to the phone (a notification you can reply to inline). Returns <code>msg_id</code>.</td>
+</tr>
+<tr>
+<td><code>get_replies(wait_s?)</code></td>
+<td>Your new replies, each one returned once. <code>wait_s</code> waits up to that long for one (max 3600).</td>
+</tr>
+<tr>
+<td><code>call(reason, context?, urgent?)</code></td>
+<td>The phone rings. When you answer, the voice AI says why it's calling, talks with you, and hangs up when you're done. Returns the transcript, how long the call lasted, why it ended and which tools were used. Blocks until the call ends. Needs the <code>[voice]</code> extra and the voice provider's key (<code>GEMINI_API_KEY</code> by default; <code>HIVEPAL_VOICE_PROVIDER</code> picks another, see <a href="../voice/#providers">voice.md</a>).</td>
+</tr>
+<tr>
+<td><code>status()</code></td>
+<td>Whether the relay is reachable and which phones are paired.</td>
+</tr>
+</tbody>
+</table>
+<p><code>context</code> is everything the voice AI knows about the agent's work: put in it what
+to tell you, what to ask and what not to decide. If <code>~/.agentring/agents.yaml</code> exists,
+the voice AI on these calls can also consult your agents, but only once you have spoken
+on the call: <code>context</code> may hold text the calling agent read elsewhere, and that alone
+must not start a tool (<a href="../voice/#as-a-library">voice.md</a>).</p>
+<p>With <code>hivepal mcp --device</code>, the call is private to those phones. If nobody answers,
+or an agent's answer comes after the call, nothing is sent as a message, because a
+message reaches every paired phone: the calling agent still gets the result.</p>
+<p>Before <code>hivepal init</code>, the server still starts and lists its tools; each tool call then
+answers with what is missing, so the agent can tell you.</p>
+<p>The server is a small JSON-RPC loop with no MCP SDK and no extra dependencies
+(see <a href="../architecture/#accepted-deviations">architecture</a>). For an MCP URL instead of
+a local command, see <a href="#remote-mcp-http">Remote MCP (HTTP)</a>. HTTP-only clients such
+as n8n can also use the REST API (below).</p>
+<h2 id="remote-mcp-http">Remote MCP (HTTP)<a class="headerlink" href="#remote-mcp-http" title="Permanent link">#</a></h2>
+<p><code>hivepal mcp-http</code> serves the same four tools over MCP <strong>Streamable HTTP</strong> at
+<code>/mcp</code>, for many users at once. Each user's agent sends its relay API key as a
+bearer token, so nothing about the user is configured on the server, and the agent's
+computer needs no daemon:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>--transport<span class="w"> </span>http<span class="w"> </span>hivepal<span class="w"> </span>https://mcp.example.com/mcp<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--header<span class="w"> </span><span class="s2">"Authorization: Bearer ak_..."</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"hivepal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http"</span><span class="p">,</span><span class="w"> </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mcp.example.com/mcp"</span><span class="p">,</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">                                 </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer ak_..."</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Run it next to your relay (self-hosted: every key is checked against that one relay
+with <code>GET /v1/status</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hivepal<span class="w"> </span>mcp-http<span class="w"> </span>--relay-url<span class="w"> </span>https://relay.example.com<span class="w">          </span><span class="c1"># listens on 127.0.0.1:8790</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Environment</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--host</code>, <code>--port</code></td>
+<td><code>HIVEPAL_MCP_HOST</code>, <code>HIVEPAL_MCP_PORT</code></td>
+<td><code>127.0.0.1</code>, <code>8790</code></td>
+<td>Put TLS (Caddy, Traefik) in front of it.</td>
+</tr>
+<tr>
+<td><code>--relay-url</code></td>
+<td><code>HIVEPAL_RELAY_URL</code></td>
+<td></td>
+<td>The relay. With a hub, its internal address (optional).</td>
+</tr>
+<tr>
+<td></td>
+<td><code>HIVEPAL_HUB_ADMIN_URL</code>, <code>HIVEPAL_HUB_ADMIN_TOKEN_FILE</code> or <code>HIVEPAL_HUB_ADMIN_TOKEN</code></td>
+<td></td>
+<td>Hub mode: keys are resolved to their tenant (<a href="../cloud/#remote-mcp-server">cloud.md</a>).</td>
+</tr>
+<tr>
+<td><code>--data-dir</code></td>
+<td><code>HIVEPAL_MCP_DATA_DIR</code></td>
+<td><code>~/.agentring/mcp-http</code></td>
+<td>Per-user state, one SQLite file per tenant.</td>
+</tr>
+<tr>
+<td><code>--max-calls</code></td>
+<td><code>HIVEPAL_MCP_MAX_CALLS</code></td>
+<td><code>4</code></td>
+<td>Voice calls at once, all users together; one more gets the tool error <code>busy</code>.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>HIVEPAL_UPGRADE_URL</code></td>
+<td>none</td>
+<td>Hosted plans: where users raise their limits. Added to <code>quota_exceeded</code> tool errors and to the result of a call the relay cut off for minutes, so the agent can pass the link on. <code>hivepal mcp</code> (stdio) reads it too.</td>
+</tr>
+<tr>
+<td><code>--max-body</code></td>
+<td><code>HIVEPAL_MCP_MAX_BODY</code></td>
+<td><code>1048576</code></td>
+<td>Largest request body (bytes); larger gets 413.</td>
+</tr>
+<tr>
+<td><code>--allow-origin</code></td>
+<td><code>HIVEPAL_MCP_ALLOWED_ORIGINS</code> (comma-separated)</td>
+<td>none</td>
+<td>Browser <code>Origin</code>s allowed to use <code>/mcp</code> (<code>*</code> = any). Requests from any other Origin get 403; MCP clients that are not browsers send none.</td>
+</tr>
+</tbody>
+</table>
+<p>How it behaves:</p>
+<ul>
+<li><strong>Auth.</strong> No key, or one the relay (or hub) doesn't know: <code>401</code> with
+  <code>WWW-Authenticate: Bearer</code>. A working key is remembered for 5 minutes (by its
+  hash; keys are never logged).</li>
+<li><strong>Protocol.</strong> <code>POST /mcp</code> takes JSON-RPC (<code>initialize</code>, <code>ping</code>, <code>tools/list</code>,
+  <code>tools/call</code>, notifications, <code>notifications/cancelled</code>; batches too). <code>initialize</code>
+  returns an <code>Mcp-Session-Id</code>; send it back on later requests (an unknown or expired
+  one gets 404: initialize again). Requests without a session id also work.
+  <code>DELETE /mcp</code> ends the session and cancels its running requests; <code>GET /mcp</code> is 405
+  (the server sends nothing unprompted). <code>GET /healthz</code> is the health check.</li>
+<li><strong>Long calls.</strong> Quick requests get <code>application/json</code>. <code>call</code>, and <code>get_replies</code> with
+  <code>wait_s</code>, get a <code>text/event-stream</code> (if the client accepts it) with a keep-alive
+  comment every 15 s until the result, so proxies don't cut the request. Raise the
+  proxy's read timeout anyway if it is shorter than a call. If the client hangs up,
+  a waiting <code>get_replies</code> stops, with or without a stream; a phone call goes on until it ends.</li>
+<li><strong>Limits.</strong> Batches of up to 32 messages; up to 16 tool calls running at once per
+  account (over it, <code>429</code> with <code>Retry-After</code>; <code>HIVEPAL_MCP_MAX_INFLIGHT</code> changes
+  it). Connections and response sizes are capped too: see <a href="../cloud/">cloud.md</a>.</li>
+<li><strong>Voice.</strong> <code>call</code> runs the voice AI on this server, with the provider and key from
+  its environment (<code>HIVEPAL_VOICE_PROVIDER</code>, <code>GEMINI_API_KEY</code>, …) as for
+  <code>hivepal call --ai</code>. <code>agents.yaml</code> is not used: the server never runs commands
+  for its users.</li>
+<li><strong>State.</strong> Which replies <code>get_replies</code> already returned is kept per tenant (hub
+  tenant id, or the relay id in self-hosted mode) in
+  <code>{data dir}/tenants/{id}.db</code>, the same mirror the local daemon keeps, so every
+  session of one user sees each reply once, also after a restart.</li>
+</ul>
+<p>With Docker, the daemon image (<code>daemon/Dockerfile</code>, entrypoint <code>hivepal</code>) runs it;
+for example as a service in <code>deploy/docker-compose.yml</code>, routed at <code>/mcp</code> by the proxy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">  </span><span class="nt">mcp</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../daemon</span><span class="w">                 </span><span class="c1"># or the hivepal-daemon image of a release that has mcp-http</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"mcp-http"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"--host"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"0.0.0.0"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="nt">HIVEPAL_RELAY_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://relay:8080</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="nt">GEMINI_API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${GEMINI_API_KEY}</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"mcp-data:/config"</span><span class="p p-Indicator">]</span><span class="w">    </span><span class="c1"># state in /config/mcp-http</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">read_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h2 id="agentsyaml">agents.yaml<a class="headerlink" href="#agentsyaml" title="Permanent link">#</a></h2>
+<p><code>~/.agentring/agents.yaml</code> (or <code>--agents PATH</code>) lists what the voice AI may use
+during a call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">agents</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">claude</span><span class="p">:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Claude Code in my web app's repo. Code questions, CI status, deploys.</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">claude</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-p</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--permission-mode</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">plan</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"{task}"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">cwd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/code/webapp</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">timeout_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span><span class="w">          </span><span class="c1"># hard limit; the process is killed after it (default 600)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">ops</span><span class="p">:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My ops scripts. Disk, backups, service status.</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">~/bin/ops-agent</span><span class="p p-Indicator">]</span><span class="w">   </span><span class="c1"># no "{task}": the task arrives on stdin</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">OPS_PROFILE</span><span class="p">:</span><span class="w"> </span><span class="nv">prod</span><span class="p p-Indicator">}</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nt">mcp</span><span class="p">:</span><span class="w">                         </span><span class="c1"># MCP servers over Streamable HTTP; their tools go straight to the voice AI</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://127.0.0.1:8787/mcp</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="nt">tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">status</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">logs</span><span class="p p-Indicator">]</span><span class="w">    </span><span class="c1"># allowlist; omit it to expose all of the server's tools</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="nt">headers</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">Authorization</span><span class="p">:</span><span class="w"> </span><span class="nv">Bearer ...</span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<ul>
+<li><strong><code>command</code> is an argv list, never a shell string</strong> (a string is rejected). The
+  task comes from a voice model, so it is only ever one argument: <code>{task}</code> is
+  replaced inside the argument that contains it, and if no argument has it, the
+  task goes to stdin. The agent's stdout is the answer. A non-zero exit is an
+  error, with the end of stderr.</li>
+<li>The task is never read as an option. As a whole argument with no <code>--</code> before it, a
+  task that starts with <code>-</code> is passed as <code>Task: -…</code>, so <code>[claude, -p, "{task}"]</code> is safe.
+  You still choose what the agent sees: put <code>--</code> before <code>{task}</code>, or text before it in
+  the same argument (<code>"Task: {task}"</code>), and it is passed as it is.</li>
+<li>The agent runs with your environment plus <code>env</code> and <code>HIVEPAL_CALL_ID</code>, in <code>cwd</code>.
+  The call id lets an agent keep one session per call (see <a href="#openclaw">OpenClaw</a>).</li>
+<li><strong><code>description</code> matters</strong>: the voice AI picks the agent by it.</li>
+<li>Over the phone, expose only what the caller should be able to do: use
+  allowlists, and agents whose permissions you'd accept from someone holding your
+  phone. The phone is paired to your relay, but the voice AI acts on what it hears.</li>
+</ul>
+<p>Check the file and try an agent without a call:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>hivepal<span class="w"> </span>agents<span class="w">                       </span><span class="c1"># lists them; errors if the file is wrong</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>hivepal<span class="w"> </span>agents<span class="w"> </span>ask<span class="w"> </span>claude<span class="w"> </span><span class="s2">"Is CI green on main?"</span>
+</code></pre></div>
+<p>Then use it on calls:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>hivepal<span class="w"> </span>serve<span class="w"> </span>--ai<span class="w">                   </span><span class="c1"># answers "Call agent" from the app</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>hivepal<span class="w"> </span>call<span class="w"> </span><span class="s2">"Deploy needs your OK"</span><span class="w"> </span>--ai
+</code></pre></div>
+<h3 id="how-a-consultation-goes">How a consultation goes<a class="headerlink" href="#how-a-consultation-goes" title="Permanent link">#</a></h3>
+<p><code>consult_agent(agent, task)</code> waits up to 20 s. If the agent answers in that time,
+the voice AI gets the answer right away. If not, it hears that the agent is working
+on it, tells you, and the call carries on. When the answer arrives, the voice AI gets
+it as a note and tells you. If the call has already ended, the answer is sent to
+your phone as a message. Each agent works on one task at a time; a second request
+for a busy agent is refused, so the model asks again later.</p>
+<p>From Python, <code>Consultations(agents, answer_within_s=…, prompts=ConsultPrompts(…))</code>
+builds the tool (<code>.tool()</code>) for a <code>VoiceAgent</code>. Any tool of your own can do the same
+"answer later" trick: <code>current_session()</code> returns the call, and
+<code>session.notify(text, respond=True)</code> speaks up when you are done.</p>
+<h2 id="recipes-by-harness">Recipes by harness<a class="headerlink" href="#recipes-by-harness" title="Permanent link">#</a></h2>
+<p>hivepal doesn't care which harness you use: anything that speaks MCP can reach
+you, and anything you can run as a command can be consulted from a call.</p>
+<h3 id="your-agent-reaches-you-mcp">Your agent reaches you (MCP)<a class="headerlink" href="#your-agent-reaches-you-mcp" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Setup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>hivepal connect claude-code</code>, or by hand: <code>claude mcp add hivepal -- hivepal mcp</code></td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code>hivepal connect codex</code>, or by hand: <code>codex mcp add hivepal -- hivepal mcp</code>, then <code>tool_timeout_sec = 1800</code> under <code>[mcp_servers.hivepal]</code> in <code>~/.codex/config.toml</code></td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>hivepal connect cursor</code> (writes <code>~/.cursor/mcp.json</code>)</td>
+</tr>
+<tr>
+<td>opencode</td>
+<td><code>opencode.json</code>: <code>"mcp": {"hivepal": {"type": "local", "command": ["hivepal", "mcp"], "timeout": 1800000}}</code></td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td><code>hivepal connect openclaw</code>, or by hand: <code>openclaw mcp set hivepal '{"command":"hivepal","args":["mcp"],"requestTimeoutMs":1800000}'</code></td>
+</tr>
+<tr>
+<td>Hermes</td>
+<td><code>hivepal connect hermes</code>, or by hand in <code>~/.hermes/config.yaml</code>: <code>mcp_servers: {hivepal: {command: hivepal, args: [mcp], timeout: 1800}}</code></td>
+</tr>
+<tr>
+<td>Grok Build</td>
+<td><code>grok mcp add hivepal -- hivepal mcp</code> (its default tool timeout is long enough). With hivepal cloud, the plugin instead: <code>grok plugin install mixx86/hivepal#plugins/hivepal --trust</code> and <code>HIVEPAL_API_KEY</code> in your environment (<a href="https://github.com/mixx86/hivepal/blob/main/plugins/hivepal">plugins/hivepal</a>)</td>
+</tr>
+<tr>
+<td>Anything else</td>
+<td>the <code>mcpServers</code> JSON above, the <code>hivepal</code> CLI, or the <a href="#rest-api-n8n-scripts">REST API</a></td>
+</tr>
+</tbody>
+</table>
+<p>Add <a href="https://github.com/mixx86/hivepal/blob/main/skills/hivepal"><code>skills/hivepal</code></a> where the harness reads skills, so the
+agent knows when to message and when to call (<code>hivepal connect</code> does it for you).</p>
+<h3 id="hivepal-connect-claude-code-codex-cursor-openclaw-hermes"><code>hivepal connect</code> (Claude Code, Codex, Cursor, OpenClaw, Hermes)<a class="headerlink" href="#hivepal-connect-claude-code-codex-cursor-openclaw-hermes" title="Permanent link">#</a></h3>
+<p>One command sets up the whole thing, and is safe to run again:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>hivepal<span class="w"> </span>connect<span class="w"> </span>claude-code<span class="w">                  </span><span class="c1"># or: codex, cursor, openclaw, hermes</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>hivepal<span class="w"> </span>connect<span class="w"> </span>hermes<span class="w"> </span>--dry-run<span class="w">             </span><span class="c1"># show what would change</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">HIVEPAL_API_KEY</span><span class="o">=</span>ak_...<span class="w"> </span>hivepal<span class="w"> </span>connect<span class="w"> </span>hermes<span class="w"> </span>--url<span class="w"> </span>https://agentring.io/mcp<span class="w">   </span><span class="c1"># hosted MCP server</span>
+</code></pre></div>
+<ol>
+<li><strong>MCP server.</strong> Registers <code>hivepal mcp</code> (by absolute path, with <code>--agent-name
+   OpenClaw</code>/<code>Hermes</code> so the phone shows who is calling) through <code>openclaw mcp set</code>, or in
+   <code>$HERMES_HOME/config.yaml</code> (default <code>~/.hermes</code>; the old file is kept as
+   <code>config.yaml.bak-hivepal</code>). The tool timeout goes to 30 minutes, since a <code>call</code> lasts
+   as long as the conversation. With <code>--url</code>, the remote server instead: the key goes to
+   the harness's <code>.env</code> (<code>~/.openclaw/.env</code>, <code>~/.hermes/.env</code>, mode 0600) and the config
+   only says <code>Bearer ${HIVEPAL_API_KEY}</code>.
+   Claude Code: <code>claude mcp add-json hivepal … --scope user</code> (every project). Codex: the
+   <code>[mcp_servers.hivepal]</code> table in <code>~/.codex/config.toml</code> (the rest of the file is kept).
+   Cursor: <code>~/.cursor/mcp.json</code>. <code>--url</code> is for OpenClaw and Hermes only.</li>
+<li><strong>Skill.</strong> Installs <a href="https://github.com/mixx86/hivepal/blob/main/skills/hivepal"><code>skills/hivepal</code></a> (OpenClaw: <code>openclaw skills
+   install --global</code>; Hermes: <code>~/.hermes/skills/hivepal</code>; Claude Code: <code>~/.claude/skills/hivepal</code>).
+   Codex and Cursor read the MCP server's own instructions. <code>--no-skill</code> skips it.</li>
+<li><strong>Consult from a call.</strong> Adds the harness to <code>~/.agentring/agents.yaml</code> (Claude Code:
+   <code>claude -p</code>, Codex: <code>codex exec</code>; not Cursor) with the recipe below (comments in the file are kept). Not with <code>--url</code>: a remote server never
+   runs commands. <code>--no-consult</code> skips it.</li>
+</ol>
+<p>Then OpenClaw picks the server up on the next turn (<code>openclaw mcp probe hivepal</code>
+checks it); in Hermes run <code>/reload-mcp</code> or start a new session (<code>hermes mcp test
+hivepal</code>). The skill also carries a setup guide
+(<a href="https://github.com/mixx86/hivepal/blob/main/skills/hivepal/references/setup.md"><code>references/setup.md</code></a>): install it first
+(<code>openclaw skills install @mixx86/hivepal</code>, <code>hermes skills install
+mixx86/hivepal/skills/hivepal</code>) and ask your agent to "set up hivepal".</p>
+<h3 id="you-consult-your-agent-from-a-call-agentsyaml">You consult your agent from a call (<code>agents.yaml</code>)<a class="headerlink" href="#you-consult-your-agent-from-a-call-agentsyaml" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">agents</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">claude</span><span class="p">:</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Claude Code in my web app's repo. Code questions, CI status.</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">claude</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-p</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--permission-mode</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">plan</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"{task}"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">cwd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/code/webapp</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">codex</span><span class="p">:</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Codex in my web app's repo. Code questions, CI status.</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">codex</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">exec</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--sandbox</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">read-only</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--ephemeral</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">--</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"{task}"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nt">cwd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/code/webapp</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span><span class="nt">opencode</span><span class="p">:</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opencode in my web app's repo.</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">opencode</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">run</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"Task:</span><span class="nv"> </span><span class="s">{task}"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="nt">cwd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/code/webapp</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">  </span><span class="nt">hermes</span><span class="p">:</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My Hermes agent. Email, calendar, research.</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">hermes</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-z</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"Task:</span><span class="nv"> </span><span class="s">{task}"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span><span class="nt">openclaw</span><span class="p">:</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My OpenClaw assistant. Messages, calendar, home.</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">sh</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-c</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'exec</span><span class="nv"> </span><span class="s">openclaw</span><span class="nv"> </span><span class="s">agent</span><span class="nv"> </span><span class="s">--agent</span><span class="nv"> </span><span class="s">main</span><span class="nv"> </span><span class="s">--session-id</span><span class="nv"> </span><span class="s">"hivepal-${HIVEPAL_CALL_ID:-test}"</span><span class="nv"> </span><span class="s">--message="$1"'</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">sh</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"{task}"</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Keep only the ones you use, and check each with <code>hivepal agents ask &lt;name&gt; "…"</code>.
+They start read-only or with the harness's own approval rules. Widen them on
+purpose, knowing the voice AI acts on what it hears:</p>
+<ul>
+<li><strong>Claude Code</strong>: <code>plan</code> can look but not change anything. To let it act, use
+  <code>--permission-mode acceptEdits</code> with a narrow <code>--allowedTools</code> list.</li>
+<li><strong>Codex</strong>: <code>--sandbox workspace-write</code> lets it edit files under <code>cwd</code>. Add
+  <code>--skip-git-repo-check</code> if <code>cwd</code> is not a git repo.</li>
+<li><strong>opencode</strong>: uses its permission config; don't add <code>--auto</code> (approves
+  everything). With <code>opencode serve</code> running, <code>--attach http://localhost:4096</code>
+  skips the start-up cost.</li>
+<li><strong>Hermes</strong>: <code>-z</code> prints only the final answer. Don't add <code>--yolo</code> for the phone.</li>
+</ul>
+<h4 id="openclaw">OpenClaw<a class="headerlink" href="#openclaw" title="Permanent link">#</a></h4>
+<p><code>openclaw agent</code> runs one turn through your running gateway. The <code>sh -c</code> script is
+fixed text: the task arrives as <code>$1</code> and is never parsed by the shell. The call id
+gives each call its own OpenClaw session, so a second question on the same call
+keeps the context of the first.</p>
+<h3 id="agents-behind-an-http-api">Agents behind an HTTP API<a class="headerlink" href="#agents-behind-an-http-api" title="Permanent link">#</a></h3>
+<p>For an agent that only runs as a server (an OpenAI-compatible endpoint such as the
+OpenClaw gateway's or Hermes' API server, a webhook, your own service), point
+<code>command</code> at a small script that reads the task on stdin and prints the answer:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># ~/bin/ask-agent: task on stdin, answer on stdout. Set AGENT_URL, AGENT_MODEL, AGENT_KEY.</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>jq<span class="w"> </span>-Rs<span class="w"> </span>--arg<span class="w"> </span>m<span class="w"> </span><span class="s2">"</span><span class="nv">$AGENT_MODEL</span><span class="s2">"</span><span class="w"> </span>--arg<span class="w"> </span>u<span class="w"> </span><span class="s2">"hivepal-</span><span class="si">${</span><span class="nv">HIVEPAL_CALL_ID</span><span class="k">:-</span><span class="nv">test</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="s1">'{model: $m, user: $u, messages: [{role: "user", content: .}]}'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">|</span><span class="w"> </span>curl<span class="w"> </span>-sf<span class="w"> </span><span class="s2">"</span><span class="nv">$AGENT_URL</span><span class="s2">/v1/chat/completions"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$AGENT_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span>-H<span class="w"> </span><span class="s1">'content-type: application/json'</span><span class="w"> </span>-d<span class="w"> </span>@-<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-er<span class="w"> </span><span class="s1">'.choices[0].message.content'</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">  </span><span class="nt">myagent</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">~/bin/ask-agent</span><span class="p p-Indicator">]</span><span class="w">          </span><span class="c1"># no "{task}": it goes to stdin</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">AGENT_URL</span><span class="p">:</span><span class="w"> </span><span class="s">"http://127.0.0.1:8642"</span><span class="p p-Indicator">,</span><span class="nt"> AGENT_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">"..."</span><span class="p p-Indicator">,</span><span class="nt"> AGENT_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">"..."</span><span class="p p-Indicator">}</span><span class="w">   </span><span class="c1"># what your server expects</span>
+</code></pre></div>
+<h2 id="rest-api-n8n-scripts">REST API (n8n, scripts)<a class="headerlink" href="#rest-api-n8n-scripts" title="Permanent link">#</a></h2>
+<p>Every action is one HTTPS request to your relay with the daemon's <code>ak_…</code> API key
+(<code>hivepal status --json</code> prints the relay URL; the key is in
+<code>~/.agentring/.env</code>). See <a href="https://github.com/mixx86/hivepal/blob/main/protocol/relay.openapi.yaml"><code>protocol/relay.openapi.yaml</code></a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>https://relay.example.com/v1/messages<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$HIVEPAL_API_KEY</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s1">'content-type: application/json'</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'{"text": "Backup finished"}'</span>
+</code></pre></div>
+<p>Replies come from <code>GET /v1/messages?after=&lt;msg_id&gt;</code>, or live over the WebSocket. A
+call over plain REST only rings the phone: the voice needs a worker in the room,
+which is the daemon (<code>hivepal call --ai</code>, or the <code>call</code> MCP tool). See
+<a href="https://github.com/mixx86/hivepal/blob/main/examples"><code>examples/</code></a> for an n8n workflow.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../reference/configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Configuration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../voice/" class="md-footer__link md-footer__link--next" aria-label="Next: Voice AI">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Voice AI
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Hivepal · Apache-2.0 · a fork of <a href="https://github.com/mutonby/agentring">agentring</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script src="../javascripts/diagrams.js?v=20261120105047"></script>
+  <script src="../javascripts/home.js?v=20261120105047"></script>
+  <script src="../javascripts/tabs.js?v=20261120105047"></script>
+
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="t">
+  <title id="t">Robot agents send a question with two quick replies, a reminder and an urgent call to a phone</title>
+  <defs>
+    <radialGradient id="burst" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7df9ff" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#7df9ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="2.2" fill="#00a6fb"/>
+    </pattern>
+    <radialGradient id="dotsFade" cx="0.2" cy="0.95" r="0.6">
+      <stop offset="0" stop-color="#fff" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="dotsMask"><rect width="760" height="470" fill="url(#dotsFade)"/></mask>
+
+    <!-- One robot agent, drawn around (0,0) = the middle of its head; its colour is `color`. -->
+    <g id="bot">
+      <line x1="0" y1="-30" x2="0" y2="-46" stroke="#5b8cc0" stroke-width="4" stroke-linecap="round"/>
+      <rect x="-44" y="-30" width="88" height="66" rx="22" fill="currentColor" stroke="#000814" stroke-width="5"/>
+      <rect x="-31" y="-18" width="62" height="40" rx="13" fill="#001127" stroke="#000814" stroke-width="3"/>
+      <ellipse cx="-13" cy="0" rx="6" ry="8" fill="#7df9ff"/>
+      <ellipse cx="13" cy="0" rx="6" ry="8" fill="#7df9ff"/>
+      <circle cx="-11" cy="-3" r="2.2" fill="#fff"/>
+      <circle cx="15" cy="-3" r="2.2" fill="#fff"/>
+      <path d="M-9 13 Q0 19 9 13" fill="none" stroke="#7df9ff" stroke-width="3" stroke-linecap="round"/>
+      <rect x="-50" y="-6" width="9" height="20" rx="4" fill="#0353a4" stroke="#000814" stroke-width="3.5"/>
+      <rect x="41" y="-6" width="9" height="20" rx="4" fill="#0353a4" stroke="#000814" stroke-width="3.5"/>
+      <path d="M-30 -22 Q-26 -27 -18 -27" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+      <rect x="-30" y="40" width="60" height="44" rx="16" fill="currentColor" stroke="#000814" stroke-width="5"/>
+      <circle cx="0" cy="60" r="7" fill="#001127" stroke="#000814" stroke-width="3"/>
+      <circle cx="0" cy="60" r="3.2" fill="#7df9ff"/>
+    </g>
+  </defs>
+
+  <style>
+    .bubble text { font: 800 14.5px "Comic Neue", "Comic Sans MS", "Chalkboard SE", "Trebuchet MS", system-ui, sans-serif;
+      fill: #000814; }
+    .bubble .pill { font-size: 12.5px; fill: #fff; }
+    .bubble .urgent { fill: #d7263d; }
+    .light { animation: blink 2.4s ease-in-out infinite; }
+    .light.l2 { animation-delay: .8s; } .light.l3 { animation-delay: 1.6s; }
+    .pop { transform-box: fill-box; transform-origin: 50% 100%; animation: pop 4.8s ease-in-out infinite; }
+    .pop.p2 { transform-origin: 0% 50%; animation-delay: 1.6s; } .pop.p3 { animation-delay: 3.2s; }
+    .buzz { transform-box: fill-box; transform-origin: 50% 50%; animation: buzz 3.2s ease-in-out infinite; }
+    .ring { animation: ring 1.6s ease-out infinite; } .ring.r2 { animation-delay: .4s; }
+    .fly { stroke-dasharray: 6 9; animation: fly 1.4s linear infinite; }
+    .bob { animation: bob 5s ease-in-out infinite; } .bob.b2 { animation-delay: -1.7s; } .bob.b3 { animation-delay: -3.3s; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+    @keyframes pop { 0%, 6% { transform: scale(.88); } 12%, 100% { transform: scale(1); } }
+    @keyframes buzz { 0%, 70%, 100% { transform: rotate(0); } 74% { transform: rotate(-2.5deg); } 78% { transform: rotate(2.5deg); }
+      82% { transform: rotate(-2deg); } 86% { transform: rotate(1.5deg); } }
+    @keyframes ring { from { opacity: .9; } to { opacity: 0; } }
+    @keyframes fly { to { stroke-dashoffset: -30; } }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+
+  <!-- No background: the scene sits on the page (the page's CSS fades its edges) -->
+  <rect width="760" height="470" fill="url(#dots)" mask="url(#dotsMask)" opacity=".5"/>
+  <g fill="none" stroke="#00a6fb" stroke-opacity=".18" stroke-width="2">
+    <path d="M590 40 l22 -12.7 22 12.7 v25.4 l-22 12.7 -22 -12.7z"/>
+    <path d="M634 40 l22 -12.7 22 12.7 v25.4 l-22 12.7 -22 -12.7z"/>
+    <path d="M612 78 l22 -12.7 22 12.7 v25.4 l-22 12.7 -22 -12.7z"/>
+    <path d="M568 78 l22 -12.7 22 12.7 v25.4 l-22 12.7 -22 -12.7z"/>
+    <path d="M656 78 l22 -12.7 22 12.7 v25.4 l-22 12.7 -22 -12.7z"/>
+  </g>
+  <circle cx="380" cy="235" r="175" fill="url(#burst)"/>
+  <g stroke="#7df9ff" stroke-opacity=".22" stroke-width="3" stroke-linecap="round">
+    <line x1="380" y1="62" x2="380" y2="32"/><line x1="468" y1="83" x2="485" y2="57"/>
+    <line x1="532" y1="148" x2="560" y2="133"/><line x1="292" y1="83" x2="275" y2="57"/>
+    <line x1="228" y1="148" x2="200" y2="133"/><line x1="380" y1="410" x2="380" y2="440"/>
+  </g>
+
+  <!-- Messages flying to the phone -->
+  <g fill="none" stroke="#7df9ff" stroke-width="3" stroke-linecap="round">
+    <path class="fly" d="M252 196 C 275 192, 295 182, 312 172"/>
+    <path class="fly" d="M200 340 C 240 335, 285 325, 312 316"/>
+    <path class="fly" d="M524 332 C 498 330, 470 322, 448 310"/>
+  </g>
+
+  <!-- The phone -->
+  <g class="buzz">
+    <rect x="312" y="88" width="136" height="262" rx="26" fill="#001127" stroke="#2a6aa3" stroke-width="5"/>
+    <rect x="323" y="112" width="114" height="214" rx="12" fill="#06294d"/>
+    <rect x="361" y="98" width="38" height="6" rx="3" fill="#0e3a66"/>
+    <rect x="331" y="124" width="76" height="26" rx="10" fill="#e6f4ff"/>
+    <rect x="339" y="132" width="44" height="4" rx="2" fill="#0353a4"/><rect x="339" y="140" width="56" height="4" rx="2" fill="#0353a4" opacity=".5"/>
+    <rect x="353" y="158" width="76" height="22" rx="10" fill="#00a6fb"/>
+    <rect x="361" y="166" width="50" height="4" rx="2" fill="#001127"/>
+    <rect x="331" y="188" width="86" height="34" rx="10" fill="#e6f4ff"/>
+    <rect x="339" y="196" width="60" height="4" rx="2" fill="#0353a4"/><rect x="339" y="204" width="44" height="4" rx="2" fill="#0353a4" opacity=".5"/>
+    <rect x="339" y="212" width="52" height="4" rx="2" fill="#0353a4" opacity=".5"/>
+    <rect x="331" y="230" width="38" height="18" rx="9" fill="none" stroke="#7df9ff" stroke-width="2.5"/>
+    <rect x="375" y="230" width="42" height="18" rx="9" fill="none" stroke="#7df9ff" stroke-width="2.5"/>
+    <rect x="340" y="237" width="20" height="4" rx="2" fill="#7df9ff"/><rect x="384" y="237" width="24" height="4" rx="2" fill="#7df9ff"/>
+    <rect x="331" y="262" width="98" height="54" rx="12" fill="#001127" stroke="#00a6fb" stroke-width="2.5"/>
+    <circle cx="352" cy="289" r="12" fill="#00a6fb" stroke="#000814" stroke-width="2.5"/>
+    <rect x="370" y="280" width="46" height="5" rx="2.5" fill="#e6f4ff"/><rect x="370" y="291" width="32" height="4" rx="2" fill="#8fb3d9"/>
+    <circle cx="448" cy="96" r="13" fill="#ff4d6d" stroke="#000814" stroke-width="4"/>
+    <text x="448" y="101" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="14" fill="#fff">3</text>
+  </g>
+  <g fill="none" stroke="#7df9ff" stroke-width="3.5" stroke-linecap="round">
+    <path class="ring" d="M464 150 q14 18 0 36"/><path class="ring r2" d="M476 140 q22 28 0 56"/>
+    <path class="ring" d="M296 150 q-14 18 0 36"/><path class="ring r2" d="M284 140 q-22 28 0 56"/>
+  </g>
+
+  <!-- Agent 1, the planner: a question with two quick-reply buttons -->
+  <g class="bob">
+    <g transform="translate(200 196)">
+      <use href="#bot" color="#00a6fb"/>
+      <circle class="light" cx="0" cy="-50" r="7" fill="#7df9ff" stroke="#000814" stroke-width="3.5"/>
+    </g>
+    <g transform="translate(238 268) rotate(10)">
+      <rect x="-16" y="-20" width="34" height="42" rx="5" fill="#e6f4ff" stroke="#000814" stroke-width="4"/>
+      <rect x="-7" y="-25" width="16" height="9" rx="3" fill="#0353a4" stroke="#000814" stroke-width="3"/>
+      <path d="M-9 -6 l4 4 7 -8 M-9 8 l4 4 7 -8" fill="none" stroke="#00a6fb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+  <g class="bubble pop">
+    <path d="M119 22 h176 a14 14 0 0 1 14 14 v50 a14 14 0 0 1 -14 14 h-70 l-18 20 2 -20 h-90 a14 14 0 0 1 -14 -14 v-50 a14 14 0 0 1 14 -14z"
+      fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
+    <text x="207" y="47" text-anchor="middle">Call with Ana: when?</text>
+    <rect x="141" y="60" width="62" height="26" rx="13" fill="#00a6fb" stroke="#000814" stroke-width="3"/>
+    <text class="pill" x="172" y="78" text-anchor="middle">10:00</text>
+    <rect x="211" y="60" width="62" height="26" rx="13" fill="#00a6fb" stroke="#000814" stroke-width="3"/>
+    <text class="pill" x="242" y="78" text-anchor="middle">16:00</text>
+  </g>
+
+  <!-- Agent 2, the money buddy: a reminder that insists -->
+  <g class="bob b2">
+    <g transform="translate(150 360)">
+      <use href="#bot" color="#7df9ff"/>
+      <circle class="light l2" cx="0" cy="-50" r="7" fill="#00a6fb" stroke="#000814" stroke-width="3.5"/>
+    </g>
+    <!-- a stack of coins and a banknote -->
+    <g transform="translate(212 430)">
+      <rect x="-30" y="-30" width="44" height="26" rx="4" fill="#7df9ff" stroke="#000814" stroke-width="3.5" transform="rotate(-16)"/>
+      <circle cx="-10" cy="-17" r="6" fill="none" stroke="#0353a4" stroke-width="2.5" transform="rotate(-16)"/>
+      <ellipse cx="14" cy="12" rx="18" ry="7" fill="#ffc94d" stroke="#000814" stroke-width="3.5"/>
+      <ellipse cx="14" cy="4" rx="18" ry="7" fill="#ffc94d" stroke="#000814" stroke-width="3.5"/>
+      <ellipse cx="14" cy="-4" rx="18" ry="7" fill="#ffd970" stroke="#000814" stroke-width="3.5"/>
+      <path d="M8 -5 h12" stroke="#c98a00" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g class="bubble pop p2">
+    <path d="M282 368 h150 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-150 a14 14 0 0 1 -14 -14 v-8 l-18 -10 18 -2 v-8 a14 14 0 0 1 14 -14z"
+      fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
+    <text x="357" y="391" text-anchor="middle">💸 Rent is due today.</text>
+    <text x="357" y="411" text-anchor="middle">Paid it?</text>
+  </g>
+
+  <!-- Agent 3: something urgent, so it calls -->
+  <g class="bob b3">
+    <g transform="translate(580 312)">
+      <use href="#bot" color="#00a6fb"/>
+      <circle class="light l3" cx="0" cy="-50" r="7" fill="#7df9ff" stroke="#000814" stroke-width="3.5"/>
+      <path d="M-47 -2 C -50 -50, 50 -50, 47 -2" fill="none" stroke="#000814" stroke-width="10" stroke-linecap="round"/>
+      <path d="M-47 -2 C -50 -50, 50 -50, 47 -2" fill="none" stroke="#e6f4ff" stroke-width="4" stroke-linecap="round"/>
+      <rect x="-56" y="-12" width="16" height="30" rx="7" fill="#e6f4ff" stroke="#000814" stroke-width="4"/>
+      <rect x="40" y="-12" width="16" height="30" rx="7" fill="#e6f4ff" stroke="#000814" stroke-width="4"/>
+      <path d="M-48 16 C -48 32, -34 34, -20 30" fill="none" stroke="#000814" stroke-width="7" stroke-linecap="round"/>
+      <path d="M-48 16 C -48 32, -34 34, -20 30" fill="none" stroke="#e6f4ff" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="-18" cy="30" r="6" fill="#7df9ff" stroke="#000814" stroke-width="3.5"/>
+    </g>
+  </g>
+  <g class="bubble pop p3">
+    <path d="M496 156 h176 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-70 l-16 20 2 -20 h-92 a14 14 0 0 1 -14 -14 v-28 a14 14 0 0 1 14 -14z"
+      fill="#fff" stroke="#000814" stroke-width="4" stroke-linejoin="round"/>
+    <text class="urgent" x="584" y="179" text-anchor="middle">⚠️ Your server is down!</text>
+    <text x="584" y="199" text-anchor="middle">📞 Calling you now</text>
+  </g>
+</svg>

@@ -1,0 +1,2232 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A hive of AI agents in your pocket — each with its own chat, key and voice, on a relay you host yourself.">
+      
+      
+      
+        <link rel="canonical" href="https://mixx86.github.io/hivepal-web/protocol/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../reference/cli/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+  
+      
+        <title>Protocol - Hivepal</title>
+      
+    
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../stylesheets/hivepal.css?v=20261120105047"><script>
+    (function () {
+      var attach = Element.prototype.attachShadow;
+      Element.prototype.attachShadow = function (options) {
+        if (this.classList && this.classList.contains("mermaid")) {
+          options = Object.assign({}, options, { mode: "open" });
+        }
+        return attach.call(this, options);
+      };
+    })();
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#protocol-v1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Hivepal" class="md-header__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+      <nav class="hp-tabs" aria-label="Tabs">
+        <ul class="md-tabs__list">
+          
+            
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide/quickstart/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../concepts/how-it-works/" class="md-tabs__link">
+          
+  
+  
+  How it works
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/cli/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+          
+        </ul>
+      </nav>
+    
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hivepal" class="md-nav__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Hivepal
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on a server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firebase (push)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/hive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A hive of personal agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-oem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phones that don't ring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiagent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-agent design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principals-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principals and authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifiers-and-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifiers and time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST (commands)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket-event-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket (event stream)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-fcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push (FCM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pairing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pairing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-agent-user-m1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message agent → user (M1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reply-user-agent-m1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reply user → agent (M1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-call-agent-user-m2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outbound call (agent → user) (M2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-call-user-agent-m4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound call (user → agent) (M4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Call states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-calls-agent-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Group calls (agent → user)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targeted-calls-agent-some-phones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targeted calls (agent → some phones)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#livekit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LiveKit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hosted-relays-hub-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hosted relays (hub mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daemon-local-http-api-m5-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Daemon local HTTP API (M5, sketch)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android Auto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hub mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Original setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agentring's README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principals-and-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principals and authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifiers-and-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifiers and time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transport
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST (commands)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket-event-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebSocket (event stream)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-fcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push (FCM)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pairing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pairing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-agent-user-m1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message agent → user (M1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reply-user-agent-m1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reply user → agent (M1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-call-agent-user-m2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outbound call (agent → user) (M2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-call-user-agent-m4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound call (user → agent) (M4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Call states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-calls-agent-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Group calls (agent → user)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targeted-calls-agent-some-phones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targeted calls (agent → some phones)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#livekit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LiveKit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hosted-relays-hub-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hosted relays (hub mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daemon-local-http-api-m5-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Daemon local HTTP API (M5, sketch)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="protocol-v1">Protocol (v1)<a class="headerlink" href="#protocol-v1" title="Permanent link">#</a></h1>
+<blockquote>
+<p>Status: <strong>proposal for M1 review</strong>. The normative definition is
+<a href="https://github.com/mixx86/hivepal/blob/main/protocol/relay.openapi.yaml"><code>protocol/relay.openapi.yaml</code></a>; this document
+explains the flows.</p>
+</blockquote>
+<h2 id="principals-and-authentication">Principals and authentication<a class="headerlink" href="#principals-and-authentication" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Principal</th>
+<th>Credential</th>
+<th>Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>agent</strong> (the daemon)</td>
+<td>API key <code>ak_…</code> (random 32 bytes, base64url)</td>
+<td><code>Authorization: Bearer ak_…</code></td>
+</tr>
+<tr>
+<td><strong>device</strong> (the phone)</td>
+<td><code>device_jwt</code> (HS256, <code>iss</code>=<code>relay_id</code>, <code>sub</code>=<code>device_id</code>, <code>aud</code>=<code>device</code>)</td>
+<td><code>Authorization: Bearer eyJ…</code></td>
+</tr>
+<tr>
+<td>LiveKit server</td>
+<td>LiveKit webhook signature</td>
+<td><code>Authorization: &lt;livekit jwt&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>In hub mode the agent may also use a short-lived agent token <code>at_…</code> issued by the
+hub admin API (<a href="../cloud/#admin-api">cloud.md</a>); it works like the API key until it
+expires.</p>
+<p>The relay tells credentials apart by prefix (<code>ak_</code>, <code>at_</code>) vs JWT shape. TLS is
+mandatory in production; the relay refuses to start with a non-<code>https</code> public
+URL unless <code>HIVEPAL_INSECURE_DEV=1</code>.</p>
+<p>Every device request re-checks the device row, so <code>DELETE /v1/devices/{id}</code>
+revokes immediately (REST returns 401, open WebSockets are closed with code
+4401). A phone on the open call also ends that call: its room closes, which is
+what takes back a join token LiveKit keeps refreshing.</p>
+<h2 id="identifiers-and-time">Identifiers and time<a class="headerlink" href="#identifiers-and-time" title="Permanent link">#</a></h2>
+<ul>
+<li>IDs are prefixed ULIDs (lexicographically sortable): <code>dev_…</code>, <code>call_…</code>,
+  <code>msg_…</code>, <code>evt_…</code>. The relay itself has a <code>relay_id</code> (<code>rly_…</code>) generated on
+  first start.</li>
+<li>All timestamps are <strong>integer milliseconds since the Unix epoch (UTC)</strong>.</li>
+</ul>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">#</a></h2>
+<p>Every event is a flat JSON object:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msg.new"</span><span class="p">,</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"evt_01JB…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1761200000000</span><span class="p">,</span><span class="w"> </span><span class="nt">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"msg_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msg_01JB…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"agent"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Build finished ✅"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>discriminator (below)</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>unique event id; clients de-duplicate on it (an event can arrive by FCM <em>and</em> WS)</td>
+</tr>
+<tr>
+<td><code>ts</code></td>
+<td>creation time, ms</td>
+</tr>
+<tr>
+<td><code>seq</code></td>
+<td>position in the relay's event log (monotonic, global, may have gaps per principal). Absent on ephemeral events.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="catalogue">Catalogue<a class="headerlink" href="#catalogue" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th><code>type</code></th>
+<th>Payload</th>
+<th>Persisted</th>
+<th>Emitted when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>call.invite</code></td>
+<td><code>call_id, direction, agent_name, reason, priority, expires_at, device_ids?</code></td>
+<td>✓</td>
+<td>a call is created; addressed to the callee side (<code>device_ids</code> only on a targeted call)</td>
+</tr>
+<tr>
+<td><code>call.ringing</code></td>
+<td><code>call_id, device_id</code></td>
+<td>✓</td>
+<td>a device shows the incoming call UI</td>
+</tr>
+<tr>
+<td><code>call.accept</code></td>
+<td><code>call_id, by, device_id?</code></td>
+<td>✓</td>
+<td>a callee answered (in a group call, once per phone that joins, by <code>accept</code> or <code>join</code>)</td>
+</tr>
+<tr>
+<td><code>call.decline</code></td>
+<td><code>call_id, by, device_id?</code></td>
+<td>✓</td>
+<td>a callee declined (in a group call, only that phone)</td>
+</tr>
+<tr>
+<td><code>call.end</code></td>
+<td><code>call_id, by, reason, duration_ms?</code></td>
+<td>✓</td>
+<td>either side hung up, caller canceled while ringing, or LiveKit closed the room</td>
+</tr>
+<tr>
+<td><code>call.missed</code></td>
+<td><code>call_id</code></td>
+<td>✓</td>
+<td>no answer after <code>RING_TIMEOUT_S</code> (default 30)</td>
+</tr>
+<tr>
+<td><code>msg.new</code></td>
+<td><code>msg_id, from, text, reply_to?, truncated?</code></td>
+<td>✓</td>
+<td>a message was posted</td>
+</tr>
+<tr>
+<td><code>msg.read</code></td>
+<td><code>msg_id, by</code></td>
+<td>✓</td>
+<td>the other side read it</td>
+</tr>
+<tr>
+<td><code>agent.presence</code></td>
+<td><code>online</code></td>
+<td>✗</td>
+<td>daemon WS connected / disconnected (devices only)</td>
+</tr>
+<tr>
+<td><code>ws.hello</code></td>
+<td><code>relay_id, last_seq, server_ts</code></td>
+<td>✗</td>
+<td>first frame on every WebSocket</td>
+</tr>
+<tr>
+<td><code>agent.typing</code></td>
+<td><code>agent_id, conv, typing, until?</code></td>
+<td>✗</td>
+<td>Hivepal: an agent started or stopped writing (devices only; a phone that connects gets who is writing now)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>direction</code>: <code>agent_to_user</code> (agent calls phone) or <code>user_to_agent</code>.</li>
+<li><code>priority</code>: <code>normal</code> | <code>urgent</code>. Urgent = alarm stream + bypass DnD if the
+  user granted policy access.</li>
+<li><code>by</code>: <code>agent</code> | <code>user</code> | <code>relay</code> (relay = timeout / room closed).</li>
+<li><code>call.end.reason</code>: <code>hangup</code> | <code>canceled</code> | <code>room_closed</code> | <code>error</code>.</li>
+<li><code>expires_at</code> on <code>call.invite</code>: the app must not ring after this time (late
+  FCM delivery).</li>
+<li><code>msg.new.truncated</code> is only ever <code>true</code> inside a push payload (FCM data is
+  capped at 4 KB); the app then fetches <code>GET /v1/messages/{msg_id}</code>.</li>
+</ul>
+<h2 id="transport">Transport<a class="headerlink" href="#transport" title="Permanent link">#</a></h2>
+<h3 id="rest-commands">REST (commands)<a class="headerlink" href="#rest-commands" title="Permanent link">#</a></h3>
+<p>All mutations are REST calls (see OpenAPI). Errors have the shape
+<code>{"error": {"code": "busy", "message": "…"}}</code>.</p>
+<p><code>POST /v1/messages</code> accepts an optional <code>client_msg_id</code>; retries with the same
+value return the original message (idempotency for flaky mobile networks).</p>
+<h3 id="websocket-event-stream">WebSocket (event stream)<a class="headerlink" href="#websocket-event-stream" title="Permanent link">#</a></h3>
+<p><code>GET /v1/ws?after_seq=&lt;n&gt;</code> with the usual <code>Authorization</code> header.</p>
+<ol>
+<li>Server sends <code>ws.hello</code>.</li>
+<li>Server replays every persisted event visible to the principal with
+   <code>seq &gt; after_seq</code>, then streams live events.</li>
+<li>Client → server frames are not used in v1 (keepalive via WS ping/pong every
+   20 s; the relay drops sockets silent for 60 s).</li>
+</ol>
+<p><code>GET /v1/events?after_seq=&lt;n&gt;</code> returns the same thing as a page, for clients
+that only want to catch up (e.g. <code>hivepal replies</code> when <code>serve</code> isn't
+running).</p>
+<p>Visibility: both principals see all persisted events; each side acts on them
+according to <code>direction</code>/<code>from</code>. Devices additionally get <code>agent.presence</code>. The
+exception is a targeted call (see <em>Targeted calls</em>): its <code>call.*</code> events reach
+only the agent and the phones it targets, on the WebSocket (live and replay),
+over FCM and in <code>GET /v1/events</code>. Because of that a page of <code>GET /v1/events</code> can
+hold fewer events than <code>limit</code>; page on its <code>next_after_seq</code>.</p>
+<h3 id="push-fcm">Push (FCM)<a class="headerlink" href="#push-fcm" title="Permanent link">#</a></h3>
+<p>Sent through the <code>PushProvider</code> interface:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">PushProvider</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">                       </span><span class="c1">// "fcm" | "unifiedpush" (future)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">send</span><span class="p">(</span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="kt">PushTarget</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="kt">PushPayload</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="o">:</span><span class="w"> </span><span class="kt">PushOptions</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">PushResult</span><span class="o">&gt;</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">PushOptions</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ttlSeconds</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"> </span><span class="nx">highPriority</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="nx">collapseKey?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kr">type</span><span class="w"> </span><span class="nx">PushResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">;</span><span class="w"> </span><span class="nx">unregistered</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">};</span>
+</code></pre></div>
+<p>FCM HTTP v1 message (data-only, never a <code>notification</code> block, so the app
+always handles it itself):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;fcm_token&gt;"</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIGH"</span><span class="p">,</span><span class="w"> </span><span class="nt">"ttl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30s"</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">"v"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">"relay_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rly_01JB…"</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"type\":\"call.invite\",…}"</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">"sig"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;base64url HMAC-SHA256(push_secret, event)&gt;"</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>Which events are pushed to devices:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>TTL</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>call.invite</code> (<code>agent_to_user</code>)</td>
+<td>until <code>expires_at</code> (≤ 30 s)</td>
+<td>ring</td>
+</tr>
+<tr>
+<td><code>call.end</code> / <code>call.missed</code> of an agent call</td>
+<td>30 s</td>
+<td>stop ringing / tear down the call screen on all devices</td>
+</tr>
+<tr>
+<td><code>call.accept</code> of an agent call (<strong>normal</strong> priority), to every phone except the one that joined</td>
+<td>1 h</td>
+<td>offer "join the call" on the phones that are not on it</td>
+</tr>
+</tbody>
+</table>
+<p>A targeted call's pushes go only to the phones it targets.
+| <code>msg.new</code> (<code>from: agent</code>) | 28 days | notification |</p>
+<p><code>call.accept</code> goes at normal priority: a phone still ringing has nothing to show
+for it, and high-priority pushes that show nothing get an app's later pushes
+deprioritized by FCM; a phone in Doze gets it at its next maintenance window or
+when the screen turns on, which is soon enough to offer "join". The TTL is long
+so a phone that was offline during the ring still learns about the call; the app
+checks the call (<code>GET /v1/calls/{call_id}</code>) before offering anything.
+<code>call.decline</code> is not pushed: one phone declining changes nothing for the others.</p>
+<p>An <code>UNREGISTERED</code> FCM response clears the device's token (the app will
+re-send it via <code>POST /v1/device/fcm</code> on next start/refresh).</p>
+<h2 id="flows">Flows<a class="headerlink" href="#flows" title="Permanent link">#</a></h2>
+<h3 id="pairing">Pairing<a class="headerlink" href="#pairing" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hivepal pair
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  └─ POST /v1/pairing-tokens  (agent)        → { pairing_token, expires_at, qr_payload }
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>     prints QR(qr_payload)                      qr_payload = {"v":1,"relay_url":"https://…","pairing_token":"pt_…"}
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>app scans QR
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  └─ POST /v1/pair { pairing_token, fcm_token, device_name, platform, app_version }
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>       → { device_id, device_jwt, push_secret, relay_id, agent_name, push_config }
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>     push_config = the user's Firebase client values (or null): the app initialises
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>     Firebase at runtime, so one prebuilt APK works with anyone's Firebase project
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>     relay: token single-use (stored hashed), expires after 10 min
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>app stores device_jwt + push_secret (SecretStore: AES-GCM with an Android Keystore key)
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>FirebaseMessagingService.onNewToken → POST /v1/device/fcm { fcm_token }
+</code></pre></div>
+<p><code>hivepal pair</code> polls <code>GET /v1/devices</code> (or listens on WS) and prints
+"Paired with Pixel 8 ✅".</p>
+<h3 id="message-agent-user-m1">Message agent → user (M1)<a class="headerlink" href="#message-agent-user-m1" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hivepal msg "hola" → POST /v1/messages {text}  (agent) → 201 {msg_id}
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>relay: store, event msg.new(from=agent) → WS (all) + FCM (devices)
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>app: verify sig → notification (MessagingStyle, inline reply)
+</code></pre></div>
+<h3 id="reply-user-agent-m1">Reply user → agent (M1)<a class="headerlink" href="#reply-user-agent-m1" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>app (inline reply or thread) → POST /v1/messages {text, client_msg_id, reply_to?}  (device)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>relay: event msg.new(from=user) → WS
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>daemon serve: store locally          hivepal replies [--since]
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>(daemon not running: `hivepal replies` falls back to GET /v1/messages?from=user)
+</code></pre></div>
+<h3 id="outbound-call-agent-user-m2">Outbound call (agent → user) (M2)<a class="headerlink" href="#outbound-call-agent-user-m2" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>daemon: POST /v1/calls {reason, priority}  (agent)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  → 201 { call: {state: ringing,…}, join: {livekit_url, livekit_token, room} }
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  daemon worker joins the room immediately
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>relay: create LiveKit room "call_&lt;id&gt;", event call.invite → WS + FCM, start 30 s timer
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>app: FCM → verify → ConnectionService.addNewIncomingCall → CallStyle + FSI
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>     → POST /v1/calls/{id}/ringing
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>user answers → POST /v1/calls/{id}/accept → 200 { call, join }  → app joins room
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>relay: state active, event call.accept
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>hang up (either side) → POST /v1/calls/{id}/end → state ended, event call.end
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>no answer in 30 s → state missed, event call.missed → daemon sends msg.new(reason) fallback (M4)
+</code></pre></div>
+<h3 id="inbound-call-user-agent-m4">Inbound call (user → agent) (M4)<a class="headerlink" href="#inbound-call-user-agent-m4" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>app: POST /v1/calls {reason?}  (device)  → 201 { call, join }  → app joins &amp; waits
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  (503 agent_offline if no daemon WebSocket is connected)
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>relay: event call.invite(direction=user_to_agent) → WS
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>daemon: POST /v1/calls/{id}/accept → join → starts worker
+</code></pre></div>
+<p>App side ("Call agent" button, enabled while the relay WebSocket is connected
+and the agent is online):</p>
+<ul>
+<li>The phone joins the LiveKit room right away with the <code>join</code> from the 201 and
+  shows "Calling <agent>…". It switches to the in-call screen on the first of:
+  <code>call.accept</code> on the WebSocket, the <code>agent</code> participant joining the room, or
+  <code>GET /v1/calls/{id}</code> returning <code>active</code> (polled every 2 s, because events of
+  calls to the agent are not pushed by FCM and the socket may be down).</li>
+<li>Hanging up while it rings → <code>POST /v1/calls/{id}/end</code> (relay: <code>canceled</code>).</li>
+<li><code>call.decline</code> / state <code>declined</code> → "The agent declined the call";
+  <code>call.missed</code> / state <code>missed</code> → "The agent didn't answer"; the call screen
+  shows the message briefly and closes. As a last resort the app gives up
+  after 75 s (ends the call itself).</li>
+<li><code>503 agent_offline</code>, <code>503 calls_unavailable</code> and <code>409 busy</code> are shown under
+  the button; no call screen opens.</li>
+<li>The phone ignores the <code>call.invite</code> of its own call (<code>direction:
+  user_to_agent</code> never rings a phone).</li>
+</ul>
+<h3 id="call-states">Call states<a class="headerlink" href="#call-states" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>           accept                 end
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ringing ───────────▶ active ───────────▶ ended
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>   │ decline ─▶ declined
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>   │ timeout ─▶ missed
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>   └ caller end ─▶ canceled
+</code></pre></div>
+<p>LiveKit <code>room_finished</code> webhook on an <code>active</code> call → <code>ended</code> with
+<code>by: relay, reason: room_closed</code> (covers crashes and lost connectivity).</p>
+<h3 id="group-calls-agent-user">Group calls (agent → user)<a class="headerlink" href="#group-calls-agent-user" title="Permanent link">#</a></h3>
+<p>Every paired phone rings. Each may answer while the call rings (until
+<code>expires_at</code>); they all join the same room and hear the agent and each other.
+A phone declining or hanging up only affects itself. The call ends when the
+agent hangs up, or when the last phone leaves (once nobody else can still
+answer, i.e. after the ring window or when no phone is still ringing). It is
+<code>declined</code> only if every phone declined, <code>missed</code> if nobody answered.</p>
+<p><strong>Join the call.</strong> While the call is <code>active</code>, any paired phone that is not on
+it (its ring ended, it declined, it hung up, or it never got the invite) may join
+at any time with <code>POST /v1/calls/{call_id}/join</code> → <code>{ call, join }</code> (same
+<code>JoinInfo</code> as accept). While the call still rings, <code>join</code> is the same as
+<code>accept</code>, so a client can always use it for "join". It emits <code>call.accept</code> with
+the phone's <code>device_id</code>; a phone already on the call just gets a new token.
+<code>409 call_ended</code> once the call is <code>ended</code>/<code>missed</code>/<code>declined</code>/<code>canceled</code>. An
+empty call still ends (rule above), so "join" is only offered while someone is
+on it.</p>
+<p>How a phone learns it can join: the <code>call.accept</code> push (or WebSocket event) of
+another phone, the response of its own <code>decline</code> / <code>end</code> (state still <code>active</code>),
+its own ring timing out locally (it checks <code>GET /v1/calls/{call_id}</code>), and
+<code>active_call</code> in <code>GET /v1/status</code> when the app comes to the foreground. It stops
+offering it on <code>call.end</code> / <code>call.missed</code> or a <code>409 call_ended</code>.</p>
+<h3 id="targeted-calls-agent-some-phones">Targeted calls (agent → some phones)<a class="headerlink" href="#targeted-calls-agent-some-phones" title="Permanent link">#</a></h3>
+<p>The agent may ring only some phones, e.g. calling back just the person who asked
+("call me when it's done") instead of waking everyone:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>POST /v1/calls {"reason": "The report is ready", "device_ids": ["dev_…"]}
+</code></pre></div>
+<p><code>device_ids</code> (agent only) lists paired, non-revoked phones (<code>GET /v1/devices</code>);
+duplicates are ignored. Unknown or revoked ids, an empty list, or a phone sending
+<code>device_ids</code> → <code>400 invalid_request</code>. Without it, every paired phone rings (group
+call, above).</p>
+<p>A targeted call is private to its phones. Only they get participant rows, the
+<code>call.invite</code> (WebSocket and push) and every later event of the call, and only
+they can answer, decline or join it; the group-call rules above apply among them.
+Every other phone gets no event or push for it, so it never rings or offers
+"join", even with an old app: the filtering is done by the relay. For those
+phones the call does not exist: <code>GET /v1/calls/{call_id}</code> is <code>404</code>, it is left
+out of <code>GET /v1/calls</code> and of <code>active_call</code> in <code>GET /v1/status</code>, <code>end</code> is <code>404</code>
+too, and <code>accept</code> / <code>decline</code> / <code>join</code> are <code>403 forbidden</code> (<code>ringing</code> is ignored). It
+still blocks new calls while it rings or is active (<code>409 busy</code>, one call at a
+time). The <code>Call</code> object and the <code>call.invite</code> event carry <code>device_ids</code>.</p>
+<p>A LiveKit <code>participant_left</code> for a phone's older session (e.g. kicked by its
+own rejoin with the same identity) does not take it off the call: the relay
+compares the session's join time with the phone's latest join.</p>
+<h3 id="livekit">LiveKit<a class="headerlink" href="#livekit" title="Permanent link">#</a></h3>
+<ul>
+<li>Room <code>call_&lt;call_id&gt;</code>, <code>emptyTimeout</code> 30 s, created by the relay.</li>
+<li>Identities: <code>agent</code>, <code>device_&lt;device_id&gt;</code>.</li>
+<li>Token: one room, <code>canPublish</code>, <code>canSubscribe</code>, <code>canPublishData</code>, TTL 120 s
+  (join window only; an established session is not affected).</li>
+<li>Live transcript: not implemented yet. The daemon keeps the transcript of AI calls
+  (<code>hivepal call --ai --json</code>, the MCP <code>call</code> tool); the app does not show it.</li>
+</ul>
+<h3 id="hosted-relays-hub-mode">Hosted relays (hub mode)<a class="headerlink" href="#hosted-relays-hub-mode" title="Permanent link">#</a></h3>
+<p>A hosted relay (docs/cloud.md) serves each tenant under a base URL with a path,
+<code>https://host/t/{tenant_id}</code>; clients append <code>/v1/...</code> to it as usual. It may refuse
+<code>POST /v1/pair</code>, <code>/v1/calls</code> and <code>/v1/messages</code> with <code>402 quota_exceeded</code> when the
+plan's limit is reached, end an active call with <code>end_reason: "quota"</code> when the call
+minutes run out (until then <code>GET /v1/calls/{call_id}</code> shows <code>time_left_ms</code>, so a voice
+agent can warn the user), and answer <code>403 tenant_disabled</code> for a disabled account. A
+self-hosted relay never does any of this.</p>
+<h2 id="daemon-local-http-api-m5-sketch">Daemon local HTTP API (M5, sketch)<a class="headerlink" href="#daemon-local-http-api-m5-sketch" title="Permanent link">#</a></h2>
+<p>Bound to <code>127.0.0.1:7878</code> by default, <code>Authorization: Bearer &lt;local key&gt;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Body / query</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/call</code></td>
+<td><code>{reason, priority?, wait?}</code></td>
+<td><code>{call_id, status, summary?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/message</code></td>
+<td><code>{text}</code></td>
+<td><code>{msg_id}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/replies</code></td>
+<td><code>?since=&lt;ms or msg_id&gt;</code></td>
+<td><code>{messages: [...]}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/calls/{id}</code></td>
+<td></td>
+<td><code>{call_id, status, duration_ms?, summary?, transcript?}</code></td>
+</tr>
+</tbody>
+</table>
+<p>The MCP streamable-HTTP transport is mounted on the same server at <code>/mcp</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../architecture/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Architecture">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Architecture
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../reference/cli/" class="md-footer__link md-footer__link--next" aria-label="Next: CLI">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                CLI
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Hivepal · Apache-2.0 · a fork of <a href="https://github.com/mutonby/agentring">agentring</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script src="../javascripts/diagrams.js?v=20261120105047"></script>
+  <script src="../javascripts/home.js?v=20261120105047"></script>
+  <script src="../javascripts/tabs.js?v=20261120105047"></script>
+
+  </body>
+</html>

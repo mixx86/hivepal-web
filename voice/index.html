@@ -1,0 +1,1905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A hive of AI agents in your pocket — each with its own chat, key and voice, on a relay you host yourself.">
+      
+      
+      
+        <link rel="canonical" href="https://mixx86.github.io/hivepal-web/voice/">
+      
+      
+        <link rel="prev" href="../agents/">
+      
+      
+        <link rel="next" href="../android-auto/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+  
+      
+        <title>Voice AI - Hivepal</title>
+      
+    
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../stylesheets/hivepal.css?v=20261120105047"><script>
+    (function () {
+      var attach = Element.prototype.attachShadow;
+      Element.prototype.attachShadow = function (options) {
+        if (this.classList && this.classList.contains("mermaid")) {
+          options = Object.assign({}, options, { mode: "open" });
+        }
+        return attach.call(this, options);
+      };
+    })();
+  </script>
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#voice-ai-on-calls-m3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Hivepal" class="md-header__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            Hivepal
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+      <nav class="hp-tabs" aria-label="Tabs">
+        <ul class="md-tabs__list">
+          
+            
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide/quickstart/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../concepts/how-it-works/" class="md-tabs__link">
+          
+  
+  
+  How it works
+
+        </a>
+      </li>
+    
+  
+
+          
+            
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../reference/cli/" class="md-tabs__link">
+          
+  
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+          
+        </ul>
+      </nav>
+    
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hivepal" class="md-nav__button md-logo" aria-label="Hivepal" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Hivepal
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mixx86/hivepal" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mixx86/hivepal
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on a server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firebase (push)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using the app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/hive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A hive of personal agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-oem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phones that don't ring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiagent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-agent design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice AI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#without-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Without code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-a-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openrouter-speech-to-text-any-model-text-to-speech" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenRouter (speech-to-text → any model → text-to-speech)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-voice-experimental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local voice (experimental)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backends
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../android-auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android Auto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releasing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hub mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Original setup guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upstream-README/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    agentring's README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#without-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Without code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-a-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Providers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openrouter-speech-to-text-any-model-text-to-speech" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenRouter (speech-to-text → any model → text-to-speech)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-voice-experimental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local voice (experimental)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backends
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="voice-ai-on-calls-m3">Voice AI on calls (M3)<a class="headerlink" href="#voice-ai-on-calls-m3" title="Permanent link">#</a></h1>
+<p>When a call is answered, a realtime speech-to-speech model talks to the user, can
+use your tools while the call goes on, and hangs up by itself when the user says
+goodbye. It works both ways: the agent calling the phone, and the phone calling
+the agent ("Call agent" in the app).</p>
+<p>Install the voice extra and give it the key of a voice provider (environment or
+<code>~/.agentring/.env</code>). Gemini Live is the default (it has a free tier); OpenAI Realtime,
+Grok Voice and Phonic work the same way, and <code>local</code> uses a voice server on your own
+machine with no key (<a href="#providers">providers</a>, <a href="#local-voice-experimental">local</a>).
+<code>install.sh</code> asks which one and its key and writes both for you; by hand:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span><span class="s1">'./daemon[voice]'</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>...<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.agentring/.env
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># or, e.g. Grok for every call (CLI and MCP):</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">XAI_API_KEY</span><span class="o">=</span>...<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.agentring/.env
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">HIVEPAL_VOICE_PROVIDER</span><span class="o">=</span>grok<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.agentring/.env
+</code></pre></div>
+<h2 id="without-code">Without code<a class="headerlink" href="#without-code" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Call the phone; the AI explains why and answers questions with your MCP tools.</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>hivepal<span class="w"> </span>call<span class="w"> </span><span class="s2">"The nightly backup failed"</span><span class="w"> </span>--ai<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--instructions<span class="w"> </span>@prompt.md<span class="w"> </span>--mcp<span class="w"> </span>http://127.0.0.1:8787/mcp<span class="w"> </span>--tools<span class="w"> </span>status,logs
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Answer calls from the phone with the AI.</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>hivepal<span class="w"> </span>serve<span class="w"> </span>--ai<span class="w"> </span>--instructions<span class="w"> </span>@prompt.md<span class="w"> </span>--mcp<span class="w"> </span>http://127.0.0.1:8787/mcp
+</code></pre></div>
+<ul>
+<li><code>--instructions</code>: the system prompt (inline or <code>@file</code>). Default: a short, generic phone persona.</li>
+<li><code>--mcp</code>: any MCP server over Streamable HTTP; repeat for several. <code>--tools</code> keeps only
+  the listed tools: over the phone, expose only what the caller should be able to do.</li>
+<li><code>--provider</code>: <code>gemini</code> (default), <code>openai</code>, <code>grok</code>, <code>phonic</code> or <code>local</code>. Default: <code>HIVEPAL_VOICE_PROVIDER</code>.</li>
+<li><code>--model</code> / <code>--voice</code>: the provider's model and voice (defaults in <a href="#providers">providers</a>);
+  <code>HIVEPAL_VOICE_MODEL</code> / <code>HIVEPAL_VOICE_NAME</code> set them for the configured provider.</li>
+<li><code>--agents</code>: an <a href="../agents/#agentsyaml"><code>agents.yaml</code></a> with your agents (the AI consults them with
+  <code>consult_agent</code>) and MCP servers. Default <code>~/.agentring/agents.yaml</code> if it exists; <code>none</code> skips it.</li>
+<li><code>call --ai --json</code> prints the whole result (transcript, tool calls, duration).</li>
+</ul>
+<h2 id="as-a-library">As a library<a class="headerlink" href="#as-a-library" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">hivepal.relay_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">RelayClient</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">hivepal.voice</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallInfo</span><span class="p">,</span> <span class="n">GeminiLive</span><span class="p">,</span> <span class="n">Prompts</span><span class="p">,</span> <span class="n">Tool</span><span class="p">,</span> <span class="n">VoiceAgent</span>  <span class="c1"># or OpenAIRealtime, GrokVoice, Phonic</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="n">service</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">return</span> <span class="s2">"up"</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">VoiceAgent</span><span class="p">(</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">lambda</span><span class="p">:</span> <span class="n">GeminiLive</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="s2">"Charon"</span><span class="p">),</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">instructions</span><span class="o">=</span><span class="s2">"You are the on-call assistant…"</span><span class="p">,</span>   <span class="c1"># or a (sync/async) function of CallInfo</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">Tool</span><span class="p">(</span><span class="s2">"status"</span><span class="p">,</span> <span class="s2">"Is a service up?"</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>                <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span> <span class="s2">"properties"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"service"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"string"</span><span class="p">}},</span> <span class="s2">"required"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"service"</span><span class="p">]})],</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">client</span> <span class="o">=</span> <span class="n">RelayClient</span><span class="p">(</span><span class="n">relay_url</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">created</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_call</span><span class="p">(</span><span class="s2">"The API is down"</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="s2">"urgent"</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">CallInfo</span><span class="p">(</span><span class="n">created</span><span class="p">[</span><span class="s2">"call"</span><span class="p">][</span><span class="s2">"call_id"</span><span class="p">],</span> <span class="s2">"The API is down"</span><span class="p">),</span> <span class="n">created</span><span class="p">[</span><span class="s2">"join"</span><span class="p">],</span> <span class="n">relay</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">end_reason</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">transcript</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">tools</span><span class="p">)</span>
+</code></pre></div>
+<p>Incoming calls: on each relay event (<code>hivepal.sync.run_ws</code>), <code>accept_incoming(client, event)</code>
+returns <code>(CallInfo, join)</code> for a call from the phone, ready for <code>agent.run</code>.</p>
+<p>What you can plug in:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tools</code></td>
+<td><code>Tool(name, description, handler, parameters)</code>; sync handlers run in a thread, async ones in the loop. <code>mcp_tools(url, allow=[…])</code> turns an MCP server into tools; <code>Consultations(load_agents(path).agents).tool()</code> is <code>consult_agent</code> (<a href="../agents/">agents.md</a>). A tool can find its call with <code>current_session()</code> and answer later with <code>session.notify(text, respond=True)</code>; pass <code>trusted=False</code> if that text is another program's output (see below).</td>
+</tr>
+<tr>
+<td><code>instructions</code></td>
+<td>Text, or a function of <code>CallInfo</code> (e.g. to add fresh context when the call starts).</td>
+</tr>
+<tr>
+<td><code>prompts</code></td>
+<td><code>Prompts(...)</code>: the notes the session gives the model when someone answers, joins or leaves, the <code>end_call</code> description, <code>minutes_low</code> (said once when a hosted relay will cut the call for the plan's minutes in about 40 s; <code>""</code> says nothing), and <code>before_tools</code>, the line added to the instructions when there are tools ("say a few words before you call a tool, never answer from memory what a tool should tell you"; <code>""</code> leaves the instructions alone). Change them to change wording or language.</td>
+</tr>
+<tr>
+<td><code>name_of</code></td>
+<td>LiveKit identity (<code>device_&lt;id&gt;</code>) → the person's name, so the model greets them by name.</td>
+</tr>
+<tr>
+<td><code>before_tool</code></td>
+<td><code>(session, call) → None \| dict \| str</code>: run, run with other args, or skip with that answer. The session exposes <code>transcript</code>, <code>partial</code>, <code>participants</code> and <code>last_user_speech_at</code> (e.g. "only act if the user asked in the last 45 s"). <code>build_agent(..., before_tool=…)</code> takes it too.</td>
+</tr>
+<tr>
+<td><code>end_call_tool</code>, <code>tool_timeout_s</code>, <code>ring_timeout_s</code>, <code>max_duration_s</code>, <code>empty_room_grace_s</code></td>
+<td>Limits. A tool slower than its timeout keeps running; the model is told so.</td>
+</tr>
+</tbody>
+</table>
+<p>Behaviour: the agent joins the room while the phone rings and opens the model
+session at the same time, so it greets as soon as someone answers. In group
+calls everyone's audio is mixed into one input and the model is told who joins
+or leaves. Talking over the model interrupts it. Tools run in their own task, so
+the call keeps listening while a slow tool works. The call ends when the model
+calls <code>end_call</code> (after its goodbye), everyone leaves (10 s grace for a dropped
+connection), the relay says it is over, or the model's session limit is near
+(Gemini: 15 min; OpenAI: 60 min).</p>
+<p><strong>Text the voice AI should not obey.</strong> Two things can reach the model from other programs:</p>
+<ul>
+<li>The MCP <code>call</code> tool's <code>context</code> comes from the calling agent, which may be passing on
+  text it read somewhere. So on those calls <code>before_tool</code> defaults to <code>after_user_speech</code>
+  (<code>hivepal.voice</code>): every tool is refused, with a note telling the model to ask,
+  until someone on the call has spoken, going by the transcript. Hanging up is never
+  held back. <code>HivepalTools(..., before_tool=…)</code> replaces it. <code>call --ai</code> and
+  <code>serve --ai</code> have no gate: their instructions are your own.</li>
+<li>A late <code>consult_agent</code> answer is an agent's output, so it is a note with <code>trusted=False</code>.
+  <code>RealtimeBackend.send_text(text, *, respond, trusted=True)</code> gets that flag. Gemini,
+  OpenAI and Grok send every note with the <code>user</code> role and ignore it. Phonic only takes
+  text as a system message, so it sends such a note fenced as data, with a random tag and
+  a line telling the model not to obey it. The fence is a label, not a guarantee. A custom
+  backend without the <code>trusted</code> parameter keeps working and gets these notes as text.</li>
+</ul>
+<h2 id="providers">Providers<a class="headerlink" href="#providers" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th><code>--provider</code></th>
+<th>Model (default)</th>
+<th>Voice (default)</th>
+<th>Key</th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gemini</code></td>
+<td>Gemini Live (<code>gemini-3.8-live</code>)</td>
+<td><code>Charon</code></td>
+<td><code>GEMINI_API_KEY</code></td>
+<td><code>GeminiLive</code> (voice/gemini.py)</td>
+</tr>
+<tr>
+<td><code>openai</code></td>
+<td>OpenAI Realtime (<code>gpt-realtime-2.1</code>)</td>
+<td><code>marin</code></td>
+<td><code>OPENAI_API_KEY</code></td>
+<td><code>OpenAIRealtime</code> (voice/openai_realtime.py)</td>
+</tr>
+<tr>
+<td><code>grok</code></td>
+<td>xAI Grok Voice (<code>grok-voice-latest</code>)</td>
+<td>xAI's default</td>
+<td><code>XAI_API_KEY</code></td>
+<td><code>GrokVoice</code> (voice/openai_realtime.py)</td>
+</tr>
+<tr>
+<td><code>phonic</code></td>
+<td>Phonic (<code>phonic-1</code>)</td>
+<td>Phonic's default</td>
+<td><code>PHONIC_API_KEY</code></td>
+<td><code>Phonic</code> (voice/phonic.py)</td>
+</tr>
+<tr>
+<td><code>local</code></td>
+<td>whatever your server runs</td>
+<td>your server's</td>
+<td>none (<code>HIVEPAL_VOICE_KEY</code> if it asks for one)</td>
+<td><code>LocalRealtime</code> (voice/openai_realtime.py)</td>
+</tr>
+<tr>
+<td><code>openrouter</code></td>
+<td>any chat model on OpenRouter (<code>anthropic/claude-haiku-5.5</code>), with speech-to-text and text-to-speech models in front and behind</td>
+<td><code>voice_478</code> (Voxtral 3)</td>
+<td><code>OPENROUTER_API_KEY</code></td>
+<td><code>OpenRouterVoice</code> (voice/openrouter.py)</td>
+</tr>
+</tbody>
+</table>
+<p>The CLI (<code>call --ai</code>, <code>serve --ai</code>) and the MCP <code>call</code> tool resolve the provider the
+same way: <code>--provider</code>/<code>--model</code>/<code>--voice</code> if given, else <code>HIVEPAL_VOICE_PROVIDER</code>,
+<code>HIVEPAL_VOICE_MODEL</code>, <code>HIVEPAL_VOICE_NAME</code> (environment or <code>~/.agentring/.env</code>),
+else the defaults above. In code: <code>resolve_voice("grok").factory()</code> is what <code>VoiceAgent</code>
+takes. <code>HIVEPAL_VOICE_LANGUAGE</code> (e.g. <code>es</code>) is added to the instructions of every provider
+("Speak es from your first word, unless the user speaks another language."), so Gemini and
+<code>local</code> greet in it too. It is also the language Phonic speaks before it has heard anyone
+(otherwise English) and a hint for OpenAI's and Grok's transcription of the user. Use a
+language name (<code>Spanish</code>) if the model needs more than the code.</p>
+<h3 id="openrouter-speech-to-text-any-model-text-to-speech">OpenRouter (speech-to-text → any model → text-to-speech)<a class="headerlink" href="#openrouter-speech-to-text-any-model-text-to-speech" title="Permanent link">#</a></h3>
+<p>Status: <strong>experimental</strong> (contributed in #28; not yet run on real calls by the maintainers).</p>
+<p>OpenRouter has no realtime speech-to-speech API, but it serves the three pieces over HTTP
+with one key, so <code>openrouter</code> chains them: the caller's audio is cut into utterances by a
+small voice activity detector, transcribed (<code>/audio/transcriptions</code>), answered by any chat
+model with your tools (<code>/chat/completions</code>, streamed) and spoken sentence by sentence
+(<code>/audio/speech</code>, streamed PCM) while the model is still writing. Talking over the agent
+interrupts it. That lets you pick the model that thinks on the call (and pay per token, not
+per audio minute), at the cost of some latency: about 2.5-3 s to the first word with
+<code>anthropic/claude-haiku-5.5</code>, against 1.2-1.6 s for the realtime models below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">OPENROUTER_API_KEY</span><span class="o">=</span>sk-or-...
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">HIVEPAL_VOICE_PROVIDER</span><span class="o">=</span>openrouter
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">HIVEPAL_VOICE_MODEL</span><span class="o">=</span>anthropic/claude-haiku-5.5<span class="w">           </span><span class="c1"># any chat model with tool calling</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">HIVEPAL_VOICE_NAME</span><span class="o">=</span>voice_483<span class="w">                             </span><span class="c1"># a TTS voice (voice_483: Voxtral 3, Spanish)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">HIVEPAL_VOICE_LANGUAGE</span><span class="o">=</span>es<span class="w">                                </span><span class="c1"># hint for the transcription</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">HIVEPAL_OPENROUTER_STT_MODEL</span><span class="o">=</span>mistralai/voxtral-mini-transcribe-3-0<span class="w">   </span><span class="c1"># default</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nv">HIVEPAL_OPENROUTER_TTS_MODEL</span><span class="o">=</span>mistralai/voxtral-mini-tts-3-0<span class="w">          </span><span class="c1"># default</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nv">HIVEPAL_OPENROUTER_ZDR</span><span class="o">=</span><span class="m">1</span><span class="w">            </span><span class="c1"># optional: only zero-data-retention endpoints, for all three</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nv">HIVEPAL_OPENROUTER_BASE_URL</span><span class="o">=</span>...<span class="w">     </span><span class="c1"># optional: another server with the same OpenAI-compatible endpoints</span>
+</code></pre></div>
+<p>With <code>HIVEPAL_OPENROUTER_ZDR=1</code> every request carries <code>provider: {zdr: true,
+data_collection: "deny"}</code>, so OpenRouter only routes to endpoints that keep nothing, and
+fails rather than fall back to one that does. Measured with <code>hivepal voice bench
+--provider openrouter --lang es --runs 2</code> on 2026-11-13 (Haiku 5.5, Voxtral STT and TTS):
+first audio 2.5-3.3 s, right tools 6-7/8 (it sometimes answers the "ask an agent" prompt itself
+instead of calling <code>consult_agent</code>), spoke before a tool 4-6/6.</p>
+<p>How they compare, measured on 2026-10-30 with the same four Spanish prompts streamed in
+real time, 3 sessions each (chat, a quick tool, two chained tools, a 3 s tool). Time is
+from the end of the user's speech to the model's first audio; "right tools" means it
+picked and chained the expected tools:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Phonic-1</th>
+<th>Grok Voice</th>
+<th>Gemini 3.8 Live</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First audio, chat</td>
+<td>1.18 s</td>
+<td>1.26 s</td>
+<td>1.60 s</td>
+</tr>
+<tr>
+<td>First audio, with tools</td>
+<td>1.20–1.52 s</td>
+<td>1.30–1.59 s</td>
+<td>2.00–5.30 s</td>
+</tr>
+<tr>
+<td>Right tools</td>
+<td>8/9</td>
+<td>9/9</td>
+<td>7/9</td>
+</tr>
+</tbody>
+</table>
+<p>Phonic and Grok say "let me check" before a tool and then answer; Gemini stays quiet
+until the tool returns. Phonic talks the longest, Grok is the most concise. OpenAI
+Realtime was not part of that run. Write-up with charts: https://agentring.io/blog/realtime-voice-models.</p>
+<p>To compare providers yourself, on your machine and with your network, run the same test:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hivepal<span class="w"> </span>voice<span class="w"> </span>bench<span class="w"> </span>--provider<span class="w"> </span>grok<span class="w"> </span>--lang<span class="w"> </span>es<span class="w">      </span><span class="c1"># or gemini, openai, phonic, openrouter, local</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>hivepal<span class="w"> </span>voice<span class="w"> </span>bench<span class="w"> </span>--provider<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--runs<span class="w"> </span><span class="m">5</span><span class="w"> </span>--out<span class="w"> </span>./bench-local<span class="w">   </span><span class="c1"># keeps each session's audio</span>
+</code></pre></div>
+<p>It speaks the four prompts with the system's text-to-speech (<code>say</code> on macOS, <code>espeak-ng</code>
+elsewhere; <code>--prompts DIR</code> takes your own <code>chat.wav</code>, <code>time.wav</code>, <code>chain.wav</code>, <code>consult.wav</code>),
+streams them in real time with the same demo tools, and prints per prompt the median time to
+the first word, how often the right tools were called and how often the model spoke before a
+tool answered. It uses the provider's real API: about 12 short sessions with <code>--runs 3</code>. <code>--instructions</code>
+swaps the system prompt, e.g. to A/B a change.</p>
+<p>What that showed for the <code>before_tools</code> line (2026-11-05, <code>--lang es --runs 3</code>, macOS voice):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>First word, slow tool</th>
+<th>Spoke before a tool answered</th>
+<th>Right tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemini 3.8 Live, without the line</td>
+<td>5.13 s</td>
+<td>0/9</td>
+<td>10/12</td>
+</tr>
+<tr>
+<td>Gemini 3.8 Live, with it</td>
+<td><strong>1.45 s</strong></td>
+<td><strong>9/9</strong></td>
+<td>11/12</td>
+</tr>
+<tr>
+<td>Grok Voice, with it (it already talked before tools)</td>
+<td>1.17 s</td>
+<td>9/9</td>
+<td>12/12</td>
+</tr>
+<tr>
+<td>Local, Ministral 3 3B, without</td>
+<td>5.55 s</td>
+<td>0/9</td>
+<td>10/12</td>
+</tr>
+<tr>
+<td>Local, Ministral 3 3B, with it</td>
+<td>2.46 s</td>
+<td>2/9</td>
+<td>10/12</td>
+</tr>
+</tbody>
+</table>
+<p>Gemini stopped going quiet while a tool works; the small local model only sometimes follows it.</p>
+<p>Pricing: Gemini Live has a free tier (rate-limited; Google may use free-tier data to
+improve its products) and a paid tier of about $0.005/min of audio in and $0.018/min out
+(https://ai.google.dev/gemini-api/docs/pricing). Phonic starts at $0.07/min
+(https://phonic.ai). OpenAI and xAI bill per use; see their pricing pages.</p>
+<h2 id="local-voice-experimental">Local voice (experimental)<a class="headerlink" href="#local-voice-experimental" title="Permanent link">#</a></h2>
+<p><code>--provider local</code> talks to an OpenAI-Realtime-compatible server you run yourself: no key,
+no per-minute bill, and the call audio stays on your machine. hivepal doesn't ship or pick
+a model; it connects to <code>HIVEPAL_VOICE_URL</code> (default <code>ws://127.0.0.1:8765/v1/realtime</code>) and
+the server decides who listens, thinks and speaks. Use <code>wss://</code> (or a private network such as
+Tailscale) if the server is on another machine: the URL carries the call audio.</p>
+<p>What worked best in our tests on an M1 Pro (32 GB) is <a href="https://github.com/huggingface/speech-to-speech">Hugging Face
+speech-to-speech</a> 1.0.0 (Parakeet for
+speech-to-text, Qwen3-TTS for the voice) with the language model served by llama.cpp:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 1. The language model: Ministral 3 3B, 4-bit (about 2 GB), on llama.cpp</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>brew<span class="w"> </span>install<span class="w"> </span>llama.cpp<span class="w">   </span><span class="c1"># or a release from github.com/ggml-org/llama.cpp</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-GGUF/resolve/main/Ministral-3-3B-Instruct-2512-Q4_K_M.gguf
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>llama-server<span class="w"> </span>-m<span class="w"> </span>Ministral-3-3B-Instruct-2512-Q4_K_M.gguf<span class="w"> </span>--jinja<span class="w"> </span>-ngl<span class="w"> </span><span class="m">99</span><span class="w"> </span>-c<span class="w"> </span><span class="m">16384</span><span class="w"> </span>--port<span class="w"> </span><span class="m">8082</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># 2. The voice server in front of it (another terminal; downloads ~2.5 GB of models the first time)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>uv<span class="w"> </span>venv<span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>s2s<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-p<span class="w"> </span>s2s/bin/python<span class="w"> </span>speech-to-speech<span class="o">==</span><span class="m">1</span>.0.0
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>s2s/bin/speech-to-speech<span class="w"> </span>serve<span class="w"> </span>--mac-optimal-settings<span class="w"> </span>--llm_backend<span class="w"> </span>chat-completions<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span>--responses_api_base_url<span class="w"> </span>http://127.0.0.1:8082/v1<span class="w"> </span>--responses_api_api_key<span class="w"> </span>none<span class="w"> </span>--model_name<span class="w"> </span>ministral<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span>--parakeet_tdt_language<span class="w"> </span>es<span class="w"> </span>--qwen3_tts_language<span class="w"> </span>Spanish<span class="w"> </span>--port<span class="w"> </span><span class="m">8765</span><span class="w">   </span><span class="c1"># or en / English</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># 3. hivepal</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>hivepal<span class="w"> </span>voice<span class="w"> </span>bench<span class="w"> </span>--provider<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--lang<span class="w"> </span>es<span class="w">   </span><span class="c1"># check it before a real call</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>hivepal<span class="w"> </span>call<span class="w"> </span><span class="s2">"Testing the local voice"</span><span class="w"> </span>--ai<span class="w"> </span>--provider<span class="w"> </span><span class="nb">local</span>
+</code></pre></div>
+<p>Any model <code>llama-server</code> can run works: change the <code>.gguf</code>. What we measured
+(write-up: https://agentring.io/blog/local-voice-models):</p>
+<table>
+<thead>
+<tr>
+<th>Language model (4-bit, llama-server)</th>
+<th>Tool prompts right, text only (12)</th>
+<th>Full voice chain on the M1 Pro: chat / quick tool</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ministral 3 3B</strong></td>
+<td>12/12</td>
+<td>2.42 s / 1.76 s</td>
+<td>7/9 right tools by voice; went quiet during a 3 s tool</td>
+</tr>
+<tr>
+<td>Qwen3-4B-Instruct-2507</td>
+<td>12/12</td>
+<td>2.39 s / 1.65 s</td>
+<td>7/9; twice answered without calling the slow tool</td>
+</tr>
+<tr>
+<td>Qwen3.5 2B</td>
+<td>12/12</td>
+<td>not measured</td>
+<td></td>
+</tr>
+<tr>
+<td>Qwen3.5 4B</td>
+<td>8/12</td>
+<td>not measured</td>
+<td></td>
+</tr>
+<tr>
+<td>LFM2.5 1.2B</td>
+<td>6/12</td>
+<td>not measured</td>
+<td></td>
+</tr>
+<tr>
+<td>Gemma 4 E4B (hears the audio itself, no speech-to-text)</td>
+<td>not run this way</td>
+<td>1.28 s / 1.31 s</td>
+<td>0/9 right tools by voice: it only uses tools when it thinks, and thinking takes 2–9 s</td>
+</tr>
+</tbody>
+</table>
+<p>For comparison, Grok Voice answered in about 1.3 s with 9/9 right tools. Known rough edges:
+the speech-to-text mishears now and then, the language model and the voice share the Mac's
+GPU (first audio 0.3–2 s depending on load), and the server takes one call at a time (6–7 GB of
+memory). HF speech-to-speech's own Mac default runs the model on MLX, which was 3–4 times
+slower in our test than the same model on llama.cpp.</p>
+<h2 id="backends">Backends<a class="headerlink" href="#backends" title="Permanent link">#</a></h2>
+<p><code>RealtimeBackend</code> (voice/backend.py) is the plug point: a class that connects with
+instructions + tools, sends audio/text/tool results and yields a few plain events.
+Each provider above is one class, spoken to over its WebSocket API with <code>websockets</code>
+(no provider SDKs):</p>
+<ul>
+<li><strong>OpenAI Realtime</strong> (GA protocol): PCM16 at 24 kHz both ways, server VAD, input
+  transcription. Function calls are collected until <code>response.done</code> and answered with
+  one <code>response.create</code>.</li>
+<li><strong>Grok Voice</strong> speaks the same protocol (<code>GrokVoice</code> subclasses <code>OpenAIRealtime</code>) with
+  a flatter session (voice and turn detection at the top) and <code>grok-transcribe</code>.</li>
+<li><strong>Phonic</strong> has its own protocol (https://docs.phonic.ai/asyncapi.yaml). Its inline tools
+  need OpenAI strict schemas, so <code>strict_schema</code> closes every object and makes optional
+  arguments nullable (the nulls are dropped before your handler runs). It streams audio
+  all the time, silence included, so only what it sends while the assistant speaks
+  reaches the call.</li>
+</ul>
+<p>A local OpenAI-Realtime-compatible server is <code>LocalRealtime(url="ws://…")</code> (what <code>--provider local</code>
+uses): the same protocol, no key, no voice or transcription model of its own.</p>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">#</a></h2>
+<p><code>tests/test_voice.py</code> and <code>tests/test_voice_providers.py</code> cover the protocols (against
+fake servers), tools, MCP and session logic without a phone. <code>tests/test_voice_live.py</code>
+runs whole calls (the AI calls a simulated phone, and the phone calls
+<code>hivepal serve --ai</code>) against a real relay, LiveKit and a real model, Gemini unless
+<code>HIVEPAL_TEST_PROVIDER</code> says otherwise:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>lk<span class="w"> </span>-p<span class="w"> </span><span class="m">7880</span>:7880<span class="w"> </span>-p<span class="w"> </span><span class="m">7881</span>:7881<span class="w"> </span>-p<span class="w"> </span><span class="m">50000</span>-50100:50000-50100/udp<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-e<span class="w"> </span><span class="s2">"LIVEKIT_KEYS=devkey: </span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/tmp/lk<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-e<span class="w"> </span><span class="s1">'LIVEKIT_CONFIG=rtc: {port_range_start: 50000, port_range_end: 50100, tcp_port: 7881}'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>livekit/livekit-server:v1.13.10<span class="w"> </span>--node-ip<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>ipconfig<span class="w"> </span>getifaddr<span class="w"> </span>en0<span class="k">)</span><span class="s2">"</span><span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nv">HIVEPAL_TEST_LIVEKIT_URL</span><span class="o">=</span>ws://127.0.0.1:7880<span class="w"> </span><span class="nv">HIVEPAL_TEST_LIVEKIT_SECRET</span><span class="o">=</span><span class="k">$(</span>cat<span class="w"> </span>/tmp/lk<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>...<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>--extra<span class="w"> </span>voice<span class="w"> </span>pytest<span class="w"> </span>tests/test_voice_live.py<span class="w"> </span>-s
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># another provider: HIVEPAL_TEST_PROVIDER=grok XAI_API_KEY=... (same for openai, phonic)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../agents/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agents and MCP">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Agents and MCP
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../android-auto/" class="md-footer__link md-footer__link--next" aria-label="Next: Android Auto">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Android Auto
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Hivepal · Apache-2.0 · a fork of <a href="https://github.com/mutonby/agentring">agentring</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  <script src="../javascripts/diagrams.js?v=20261120105047"></script>
+  <script src="../javascripts/home.js?v=20261120105047"></script>
+  <script src="../javascripts/tabs.js?v=20261120105047"></script>
+
+  </body>
+</html>
