@@ -49,9 +49,10 @@ An agent calls and it rings like a phone call, even locked, through Firebase or,
 UnifiedPush (ntfy). Call any agent back; a voice AI speaks as that agent.
 </div>
 <div class="hp-card" markdown>
-### ✉️ Wake-up emails, mailbox files
-Agents that only run on a schedule (like Grok bots) get an email doorbell when you write, so they answer
-in seconds. Agents that read a folder get each message as a Markdown file.
+### ✉️ Wake-up emails, mailboxes, memory
+Bots that only run now and then (like Grok bots) get an email doorbell when you write, and/or each
+message as a Markdown file in a git mailbox (in the relay or your notes repo). And they can remember
+your conversations, in Markdown or searchable SQLite. Set it up from the app.
 </div>
 <div class="hp-card" markdown>
 ### 💳 Subscriptions
